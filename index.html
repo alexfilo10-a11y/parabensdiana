@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Feliz Aniversário, Diana! 🎂💖</title>
+  <title>Feliz Aniversário, Diana! 🎂✨</title>
 
-  <!-- Fontes elegantes com fallback seguro para Georgia e system-ui -->
+  <!-- Fontes elegantes com fallback seguro -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -66,10 +66,6 @@
       z-index: 999;
     }
 
-    .hidden-input {
-      display: none;
-    }
-
     /* =========================================================
        BARRA DE NAVEGAÇÃO FIXA (STICKY NAVBAR)
        ========================================================= */
@@ -77,7 +73,7 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(255, 249, 247, 0.92);
+      background: rgba(255, 249, 247, 0.94);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border-soft);
@@ -123,7 +119,7 @@
       font-weight: 500;
       padding: 7px 12px;
       border-radius: var(--radius-pill);
-      transition: background-color 0.25s ease, color 0.25s ease, transform 0.2s ease;
+      transition: background-color 0.25s ease, color 0.25s ease;
       white-space: nowrap;
     }
 
@@ -147,7 +143,7 @@
     }
 
     .container {
-      max-width: 960px;
+      max-width: 980px;
       margin: 0 auto;
       width: 100%;
     }
@@ -336,7 +332,7 @@
     }
 
     /* =========================================================
-       2. SEÇÃO DA CARTA (ENVELOPE INTERATIVO)
+       2. SEÇÃO DA CARTA (ENVELOPE FECHADO POR PADRÃO)
        ========================================================= */
     .envelope-area {
       display: flex;
@@ -464,17 +460,17 @@
       margin-top: 22px;
     }
 
-    /* Cartão da carta aberta */
+    /* Cartão da carta: OCULTO por padrão */
     .letter-card-wrapper {
       width: 100%;
       max-width: 720px;
       margin-top: 28px;
       display: none;
-      animation: fadeSlideDown 0.55s ease forwards;
     }
 
     .letter-card-wrapper.is-visible {
       display: block;
+      animation: fadeSlideDown 0.55s ease forwards;
     }
 
     @keyframes fadeSlideDown {
@@ -856,11 +852,11 @@
     }
 
     /* =========================================================
-       5. MURAL DE POLAROIDS
+       5. MURAL DE POLAROIDS (FOTOS REAIS DO GITHUB)
        ========================================================= */
     .polaroids-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 28px;
       margin-top: 12px;
     }
@@ -875,10 +871,10 @@
       text-align: center;
     }
 
-    .polaroid-card:nth-child(1) { transform: rotate(-2.2deg); }
-    .polaroid-card:nth-child(2) { transform: rotate(2deg); }
-    .polaroid-card:nth-child(3) { transform: rotate(-1.6deg); }
-    .polaroid-card:nth-child(4) { transform: rotate(2.3deg); }
+    .polaroid-card:nth-child(1) { transform: rotate(-2deg); }
+    .polaroid-card:nth-child(2) { transform: rotate(1.8deg); }
+    .polaroid-card:nth-child(3) { transform: rotate(-1.5deg); }
+    .polaroid-card:nth-child(4) { transform: rotate(2deg); }
 
     .polaroid-card:hover {
       transform: translateY(-8px) rotate(0deg) scale(1.03);
@@ -886,26 +882,19 @@
     }
 
     .polaroid-frame {
-      position: relative;
       width: 100%;
-      aspect-ratio: 4 / 3.4;
+      height: 260px;
       border-radius: 10px;
       overflow: hidden;
       background: var(--bg-blush);
-    }
-
-    .polaroid-media {
-      width: 100%;
-      height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 0;
     }
 
-    .polaroid-media img {
+    .polaroid-frame img {
       width: 100%;
-      height: 100%;
+      height: 260px;
       object-fit: cover;
       display: block;
     }
@@ -1008,50 +997,58 @@
     }
 
     /* =========================================================
-       7. RODAPÉ COM CONTAGEM REGRESSIVA
+       7. RODAPÉ COM CONTAGEM REGRESSIVA EM DESTAQUE
        ========================================================= */
     .footer {
-      background: linear-gradient(180deg, #fff9f7 0%, #f9e9ee 100%);
+      background: linear-gradient(180deg, #fff9f7 0%, #f8e3ea 100%);
       border-top: 1px solid var(--border-soft);
-      padding: 56px 20px 64px;
+      padding: 60px 20px 68px;
       text-align: center;
     }
 
     .footer-love {
       font-family: var(--font-serif);
       font-style: italic;
-      font-size: clamp(1.3rem, 3.2vw, 1.7rem);
+      font-size: clamp(1.35rem, 3.2vw, 1.8rem);
       color: var(--wine-soft);
       font-weight: 700;
       margin-bottom: 24px;
     }
 
+    .countdown-box {
+      max-width: 540px;
+      margin: 0 auto 28px;
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(212, 163, 89, 0.45);
+      border-radius: var(--radius-lg);
+      padding: 24px 18px;
+      box-shadow: var(--shadow-soft);
+    }
+
     .countdown-label {
-      font-size: 0.94rem;
+      font-size: 0.96rem;
       font-weight: 600;
-      color: var(--text-muted);
+      color: var(--wine-soft);
       margin-bottom: 18px;
     }
 
     .countdown-grid {
-      display: inline-grid;
-      grid-template-columns: repeat(4, minmax(66px, 86px));
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
       gap: 12px;
-      margin-bottom: 26px;
     }
 
     .countdown-unit {
-      background: var(--card-white);
-      border: 1px solid rgba(212, 163, 89, 0.35);
+      background: var(--bg-cream);
+      border: 1px solid rgba(214, 90, 122, 0.22);
       border-radius: 16px;
-      padding: 14px 8px;
-      box-shadow: var(--shadow-soft);
+      padding: 14px 6px;
     }
 
     .countdown-value {
       display: block;
       font-family: var(--font-serif);
-      font-size: clamp(1.35rem, 3.5vw, 1.85rem);
+      font-size: clamp(1.4rem, 4vw, 2rem);
       font-weight: 700;
       color: var(--rose-antique);
       line-height: 1.1;
@@ -1073,7 +1070,7 @@
       align-items: center;
       gap: 16px;
       flex-wrap: wrap;
-      font-size: 0.88rem;
+      font-size: 0.9rem;
     }
 
     .footer-links button,
@@ -1082,7 +1079,7 @@
       border: none;
       color: var(--wine-soft);
       font-family: var(--font-sans);
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       font-weight: 600;
       cursor: pointer;
       text-decoration: none;
@@ -1094,7 +1091,7 @@
     }
 
     /* =========================================================
-       AJUSTES RESPONSIVOS PARA TELAS PEQUENAS
+       AJUSTES RESPONSIVOS PARA CELULAR
        ========================================================= */
     @media (max-width: 640px) {
       .navbar-inner {
@@ -1112,10 +1109,7 @@
       }
 
       .countdown-grid {
-        grid-template-columns: repeat(4, minmax(60px, 1fr));
         gap: 8px;
-        width: 100%;
-        max-width: 340px;
       }
     }
   </style>
@@ -1126,7 +1120,7 @@
   <canvas id="confetti-canvas" aria-hidden="true"></canvas>
 
   <!-- =========================================================
-       STICKY NAVBAR
+       BARRA DE NAVEGAÇÃO FIXA
        ========================================================= -->
   <header class="navbar">
     <nav class="navbar-inner" aria-label="Navegação principal">
@@ -1144,19 +1138,19 @@
 
   <main>
     <!-- =========================================================
-         1. CAPA (HERO)
+         1. CAPA (HERO) - 100% FOCADA NO ANIVERSÁRIO DA DIANA
          ========================================================= -->
     <section id="inicio" class="hero">
       <div class="floating-layer" id="floating-layer" aria-hidden="true"></div>
 
       <div class="hero-content">
         <div class="hero-badge">✨ Hoje o dia é todo seu ✨</div>
-        <h1 class="hero-title">Feliz Aniversário, Diana! 🎂💖</h1>
+        <h1 class="hero-title">Feliz Aniversário, Diana! 🎂✨</h1>
         <p class="hero-subtitle">
           Preparei esse cantinho especial cheio de amor, lembranças, um quiz sobre a gente e uma surpresa no final.
         </p>
         <div class="hero-actions">
-          <button type="button" class="btn btn-gold" onclick="launchConfetti(140)">
+          <button type="button" class="btn btn-gold" id="hero-confetti-btn">
             Soltar Confetes 🎉
           </button>
           <a href="#carta" class="btn btn-primary">
@@ -1167,7 +1161,7 @@
     </section>
 
     <!-- =========================================================
-         2. SEÇÃO DA CARTA (#carta)
+         2. ENVELOPE SECRETO (#carta) - COMEÇA FECHADO
          ========================================================= -->
     <section id="carta" class="section section-alt">
       <div class="container">
@@ -1175,7 +1169,7 @@
           <span class="section-kicker">Capítulo 01</span>
           <h2 class="section-title">Uma Carta Para Você 💌</h2>
           <p class="section-subtitle">
-            Toque no envelope ou no botão abaixo para abrir a carta que escrevi especialmente para o seu aniversário.
+            Toque no envelope ou no botão abaixo para abrir a carta que escrevi especialmente para o seu dia.
           </p>
         </div>
 
@@ -1188,14 +1182,13 @@
             tabindex="0"
             aria-expanded="false"
             aria-controls="letter-card-wrapper"
-            onclick="toggleLetter()"
           >
             <div class="envelope-box">
               <div class="envelope-flap"></div>
               <div class="envelope-folds"></div>
               <div class="envelope-inner-sheet">
                 <span class="to-label">Para Diana ❤️</span>
-                <span class="tap-hint">Toque para abrir</span>
+                <span class="tap-hint" id="envelope-hint">Toque para abrir</span>
               </div>
               <div class="envelope-seal" aria-hidden="true">♥</div>
             </div>
@@ -1203,12 +1196,12 @@
 
           <!-- Botão claro para abrir/fechar -->
           <div class="envelope-toggle-wrap">
-            <button type="button" id="envelope-toggle-btn" class="btn btn-primary" onclick="toggleLetter()">
-              Clique para abrir a carta ✉️
+            <button type="button" id="envelope-toggle-btn" class="btn btn-primary">
+              Abrir Envelope 💌
             </button>
           </div>
 
-          <!-- Cartão da carta completa -->
+          <!-- Cartão da carta (começa oculto) -->
           <div id="letter-card-wrapper" class="letter-card-wrapper">
             <article class="letter-card">
               <div class="letter-card-header">
@@ -1218,16 +1211,16 @@
 
               <div class="letter-body">
                 <p>
-                  Hoje é o seu dia, e eu queria fazer algo especial para te lembrar do quanto você é incrível e do quanto eu te amo. ❤️
+                  Hoje é o seu dia, e eu queria criar algo especial só seu para te lembrar do quanto você é incrível e do quanto eu te amo. ❤️
                 </p>
                 <p>
-                  Nesses 3 anos ao seu lado, cada momento só me deu ainda mais certeza de que você é a minha melhor companhia, minha parceira de vida e o meu lugar favorito no mundo. Já estou até contando os dias para o nosso aniversário de namoro em 9 de janeiro de 2027! 🗓️💑
+                  Cada momento ao seu lado só me dá ainda mais certeza de que você é a minha melhor companhia, minha parceira de vida e o meu lugar favorito no mundo. Já estou até contando os dias na contagem regressiva para o nosso dia 9 de janeiro de 2027! 🗓️💑
                 </p>
                 <p>
-                  Uma das coisas que eu mais amo na gente é a nossa paixão por viajar. ✈️🌍 Cada destino novo, cada risada no caminho e cada lembrança que a gente constrói juntos vale ouro pra mim — e eu mal posso esperar por todos os carimbos que ainda vamos colocar no passaporte lado a lado.
+                  Uma das coisas que eu mais amo na gente é a nossa paixão por viajar. ✈️🌍 Cada destino novo, cada risada no caminho e cada lembrança que a gente constrói juntos vale ouro pra mim — e eu mal posso esperar por todos os lugares que ainda vamos explorar lado a lado.
                 </p>
                 <p>
-                  E claro, eu nunca esqueço do nosso grande sonho: um dia morar em Londres 🇬🇧 ou em Nova York 🗽. Seja tomando um café quentinho num dia chuvoso em Londres ou caminhando pelas ruas iluminadas de NY, o que mais importa pra mim é estar com você... e, claro, com a nossa casa cheia de cachorros e gatos fazendo a melhor bagunça do mundo! 🐶🐱🏡
+                  E claro, eu nunca esqueço do nosso grande sonho: um dia morar em Londres 🇬🇧 ou em Nova York 🗽. Seja tomando um café quentinho num dia chuvoso em Londres ou caminhando pelas ruas iluminadas de NY, o que mais importa pra mim é estar com você... e com a nossa futura casa cheia de cachorros e gatos fazendo a melhor bagunça do mundo! 🐶🐱🏡
                 </p>
                 <p>
                   Que esse novo ciclo da sua vida seja leve, iluminado, cheio de saúde, conquistas e momentos inesquecíveis. Obrigado por existir e por fazer a minha vida tão mais feliz.
@@ -1239,8 +1232,8 @@
 
               <div class="letter-footer">
                 <span class="letter-sign">Com amor, seu namorado ❤️</span>
-                <button type="button" class="btn btn-outline" onclick="toggleLetter()">
-                  Fechar carta ✉️
+                <button type="button" id="close-letter-btn" class="btn btn-outline">
+                  Fechar Carta ✉️
                 </button>
               </div>
             </article>
@@ -1250,7 +1243,7 @@
     </section>
 
     <!-- =========================================================
-         3. SEÇÃO DO MINI-QUIZ INTERATIVO (#quiz)
+         3. QUIZ DO NOSSO AMOR (#quiz)
          ========================================================= -->
     <section id="quiz" class="section">
       <div class="container-narrow">
@@ -1258,12 +1251,11 @@
           <span class="section-kicker">Capítulo 02</span>
           <h2 class="section-title">Quiz do Nosso Amor 💘</h2>
           <p class="section-subtitle">
-            Vamos ver se a aniversariante acerta tudo sobre a gente!
+            Vamos ver se a aniversariante acerta todas sobre a gente!
           </p>
         </div>
 
         <div class="quiz-card">
-          <!-- Tela de perguntas (já visível por padrão) -->
           <div id="quiz-active-view">
             <div class="quiz-meta">
               <span id="quiz-step-text" class="quiz-step">Pergunta 1 de 7</span>
@@ -1281,13 +1273,12 @@
             <div id="quiz-feedback-box" class="quiz-feedback" role="status" aria-live="polite"></div>
 
             <div id="quiz-next-row" class="quiz-next-row">
-              <button type="button" id="quiz-next-btn" class="btn btn-primary" onclick="nextQuizQuestion()">
+              <button type="button" id="quiz-next-btn" class="btn btn-primary">
                 Próxima Pergunta →
               </button>
             </div>
           </div>
 
-          <!-- Tela de resultado final -->
           <div id="quiz-result-view" class="quiz-result">
             <div class="quiz-trophy">🏆</div>
             <h3 class="quiz-result-title">
@@ -1295,11 +1286,11 @@
             </h3>
             <p id="quiz-final-msg" class="quiz-result-msg"></p>
             <div class="quiz-result-actions">
-              <button type="button" class="btn btn-outline" onclick="restartQuiz()">
-                Jogar novamente 🔄
+              <button type="button" id="quiz-restart-btn" class="btn btn-outline">
+                Jogar Novamente 🔄
               </button>
               <a href="#surpresa" class="btn btn-gold">
-                Ir para a surpresa 🎁
+                Ir para a Surpresa 🎁
               </a>
             </div>
           </div>
@@ -1308,7 +1299,7 @@
     </section>
 
     <!-- =========================================================
-         4. SEÇÃO BARALHO DE MOTIVOS (#motivos)
+         4. BARALHO DE 8 MOTIVOS (#motivos)
          ========================================================= -->
     <section id="motivos" class="section section-alt">
       <div class="container">
@@ -1334,7 +1325,6 @@
             role="button"
             tabindex="0"
             aria-label="Ver próximo motivo"
-            onclick="nextReason()"
           >
             <span id="reason-num-bg" class="reason-number-bg">01</span>
             <div id="reason-icon" class="reason-icon">✨</div>
@@ -1346,10 +1336,10 @@
           </div>
 
           <div class="reasons-controls">
-            <button type="button" class="btn btn-outline" onclick="prevReason()">
+            <button type="button" id="reason-prev-btn" class="btn btn-outline">
               ← Anterior
             </button>
-            <button type="button" class="btn btn-primary" onclick="nextReason()">
+            <button type="button" id="reason-next-btn" class="btn btn-primary">
               Próximo →
             </button>
           </div>
@@ -1358,7 +1348,7 @@
     </section>
 
     <!-- =========================================================
-         5. SEÇÃO MURAL DE POLAROIDS (#fotos)
+         5. MURAL DE POLAROIDS (#fotos)
          ========================================================= -->
     <section id="fotos" class="section">
       <div class="container">
@@ -1370,12 +1360,56 @@
           </p>
         </div>
 
-        <div id="polaroids-grid" class="polaroids-grid"></div>
+        <div class="polaroids-grid">
+          <article class="polaroid-card">
+            <div class="polaroid-frame">
+              <img
+                src="./foto1.jpg.jpeg"
+                alt="Nossos melhores momentos"
+                onerror="this.onerror=null; this.src='https://placehold.co/600x520/fdeff2/8c2f4b?text=Foto+1+%F0%9F%92%95';"
+              />
+            </div>
+            <h3 class="polaroid-caption">Nossos melhores momentos 💕</h3>
+          </article>
+
+          <article class="polaroid-card">
+            <div class="polaroid-frame">
+              <img
+                src="./foto2.jpg.jpeg"
+                alt="Viajando pelo mundo juntos"
+                onerror="this.onerror=null; this.src='https://placehold.co/600x520/fdeff2/8c2f4b?text=Foto+2+%E2%9C%88%EF%B8%8F';"
+              />
+            </div>
+            <h3 class="polaroid-caption">Viajando pelo mundo juntos ✈️</h3>
+          </article>
+
+          <article class="polaroid-card">
+            <div class="polaroid-frame">
+              <img
+                src="./foto3.jpg.jpeg"
+                alt="Sonhando com Londres e Nova York"
+                onerror="this.onerror=null; this.src='https://placehold.co/600x520/fdeff2/8c2f4b?text=Foto+3+%F0%9F%97%BD';"
+              />
+            </div>
+            <h3 class="polaroid-caption">Sonhando com Londres &amp; NY 🇬🇧🗽</h3>
+          </article>
+
+          <article class="polaroid-card">
+            <div class="polaroid-frame">
+              <img
+                src="./foto4.jpg.jpeg"
+                alt="Sempre ao seu lado"
+                onerror="this.onerror=null; this.src='https://placehold.co/600x520/fdeff2/8c2f4b?text=Foto+4+%F0%9F%90%B6%F0%9F%90%B1';"
+              />
+            </div>
+            <h3 class="polaroid-caption">Sempre ao seu lado 🐶🐱❤️</h3>
+          </article>
+        </div>
       </div>
     </section>
 
     <!-- =========================================================
-         6. SEÇÃO SURPRESA DE ANIVERSÁRIO - RASPADINHA DOURADA (#surpresa)
+         6. RASPADINHA DOURADA (#surpresa)
          ========================================================= -->
     <section id="surpresa" class="section section-alt">
       <div class="container">
@@ -1389,7 +1423,6 @@
 
         <div class="scratch-frame">
           <div id="scratch-box" class="scratch-box">
-            <!-- Vale-presente revelado por baixo -->
             <div class="gift-reveal-content">
               <div class="gift-badge">🎁 VALE-PRESENTE ESPECIAL 🎁</div>
               <p class="gift-title">
@@ -1401,17 +1434,16 @@
               </div>
             </div>
 
-            <!-- Camada metálica dourada raspável -->
             <canvas id="scratch-canvas" aria-label="Cartão dourado raspável"></canvas>
           </div>
         </div>
 
         <div class="scratch-actions">
-          <button type="button" id="reveal-surprise-btn" class="btn btn-gold" onclick="revealSurprise()">
-            Ou clique aqui para revelar a surpresa ✨
+          <button type="button" id="reveal-surprise-btn" class="btn btn-gold">
+            Revelar Surpresa ✨
           </button>
-          <button type="button" id="reset-surprise-btn" class="btn btn-outline" style="display: none;" onclick="initScratchCard()">
-            Cobrir novamente 🔄
+          <button type="button" id="reset-surprise-btn" class="btn btn-outline" style="display: none;">
+            Cobrir Novamente 🔄
           </button>
         </div>
       </div>
@@ -1419,36 +1451,39 @@
   </main>
 
   <!-- =========================================================
-       7. RODAPÉ COM CONTAGEM REGRESSIVA (09/01/2027)
+       7. RODAPÉ COM CONTAGEM REGRESSIVA AO VIVO (09/01/2027)
        ========================================================= -->
   <footer class="footer">
     <div class="container">
       <p class="footer-love">Feito com todo o meu amor para a Diana 💖</p>
-      <p class="countdown-label">
-        Contagem regressiva para o nosso aniversário de namoro (09/01/2027) 🗓️❤️
-      </p>
 
-      <div class="countdown-grid" aria-live="polite">
-        <div class="countdown-unit">
-          <span id="cd-days" class="countdown-value">00</span>
-          <span class="countdown-name">Dias</span>
-        </div>
-        <div class="countdown-unit">
-          <span id="cd-hours" class="countdown-value">00</span>
-          <span class="countdown-name">Horas</span>
-        </div>
-        <div class="countdown-unit">
-          <span id="cd-minutes" class="countdown-value">00</span>
-          <span class="countdown-name">Minutos</span>
-        </div>
-        <div class="countdown-unit">
-          <span id="cd-seconds" class="countdown-value">00</span>
-          <span class="countdown-name">Segundos</span>
+      <div class="countdown-box">
+        <p class="countdown-label">
+          Contagem regressiva para o nosso dia 09/01/2027 🗓️❤️
+        </p>
+
+        <div class="countdown-grid" aria-live="polite">
+          <div class="countdown-unit">
+            <span id="cd-days" class="countdown-value">00</span>
+            <span class="countdown-name">Dias</span>
+          </div>
+          <div class="countdown-unit">
+            <span id="cd-hours" class="countdown-value">00</span>
+            <span class="countdown-name">Horas</span>
+          </div>
+          <div class="countdown-unit">
+            <span id="cd-minutes" class="countdown-value">00</span>
+            <span class="countdown-name">Minutos</span>
+          </div>
+          <div class="countdown-unit">
+            <span id="cd-seconds" class="countdown-value">00</span>
+            <span class="countdown-name">Segundos</span>
+          </div>
         </div>
       </div>
 
       <div class="footer-links">
-        <button type="button" onclick="launchConfetti(140)">Soltar Confetes 🎉</button>
+        <button type="button" id="footer-confetti-btn">Soltar Confetes 🎉</button>
         <span>•</span>
         <a href="#inicio">Voltar ao topo ↑</a>
       </div>
@@ -1456,38 +1491,176 @@
   </footer>
 
   <!-- =========================================================
-       JAVASCRIPT PURO (SEM DEPENDÊNCIAS EXTERNAS)
+       JAVASCRIPT PURO (100% AUTOCONTIDO, SEM BIBLIOTECAS EXTERNAS)
        ========================================================= -->
   <script>
     (function () {
       "use strict";
 
       /* =======================================================
-         DADOS DO QUIZ (7 PERGUNTAS EXATAS)
+         1. CONFETES EM CANVAS HTML5
+         ======================================================= */
+      const confettiCanvas = document.getElementById("confetti-canvas");
+      const confettiCtx = confettiCanvas.getContext("2d");
+      let confettiParticles = [];
+      let confettiFrameId = null;
+
+      const CONFETTI_COLORS = [
+        "#d65a7a", "#8c2f4b", "#d4a359", "#f3dfb6", "#f48fb1", "#ffca28", "#ffffff"
+      ];
+
+      function resizeConfettiCanvas() {
+        confettiCanvas.width = window.innerWidth;
+        confettiCanvas.height = window.innerHeight;
+      }
+
+      function launchConfetti(count) {
+        const total = count || 120;
+        for (let i = 0; i < total; i++) {
+          confettiParticles.push({
+            x: Math.random() * confettiCanvas.width,
+            y: Math.random() * -confettiCanvas.height * 0.45 - 10,
+            w: Math.random() * 8 + 5,
+            h: Math.random() * 5 + 4,
+            color: CONFETTI_COLORS[Math.floor(Math.random() * CONFETTI_COLORS.length)],
+            vx: (Math.random() - 0.5) * 4.2,
+            vy: Math.random() * 3.5 + 2.4,
+            angle: Math.random() * 360,
+            vAngle: (Math.random() - 0.5) * 10,
+            opacity: 1
+          });
+        }
+
+        if (!confettiFrameId) {
+          animateConfetti();
+        }
+      }
+
+      function animateConfetti() {
+        confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+
+        for (let i = confettiParticles.length - 1; i >= 0; i--) {
+          const p = confettiParticles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vy += 0.04;
+          p.angle += p.vAngle;
+
+          if (p.y > confettiCanvas.height * 0.8) {
+            p.opacity -= 0.02;
+          }
+
+          confettiCtx.save();
+          confettiCtx.translate(p.x, p.y);
+          confettiCtx.rotate((p.angle * Math.PI) / 180);
+          confettiCtx.globalAlpha = Math.max(0, p.opacity);
+          confettiCtx.fillStyle = p.color;
+          confettiCtx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+          confettiCtx.restore();
+
+          if (p.y > confettiCanvas.height + 20 || p.opacity <= 0) {
+            confettiParticles.splice(i, 1);
+          }
+        }
+
+        if (confettiParticles.length > 0) {
+          confettiFrameId = requestAnimationFrame(animateConfetti);
+        } else {
+          confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+          confettiFrameId = null;
+        }
+      }
+
+      /* =======================================================
+         2. DECORAÇÃO FLUTUANTE DA CAPA
+         ======================================================= */
+      function initFloatingDecor() {
+        const layer = document.getElementById("floating-layer");
+        const symbols = ["✨", "💖", "🌸", "🎂", "✨", "💕", "🥂", "✨"];
+        layer.innerHTML = "";
+
+        symbols.forEach(function (sym, idx) {
+          const span = document.createElement("span");
+          span.className = "floating-item";
+          span.textContent = sym;
+          span.style.left = (8 + idx * 12) + "%";
+          span.style.top = (14 + ((idx * 23) % 68)) + "%";
+          span.style.fontSize = (18 + (idx % 3) * 8) + "px";
+          span.style.setProperty("--dur", (6 + (idx % 4) * 1.5) + "s");
+          span.style.setProperty("--del", (idx * 0.4) + "s");
+          layer.appendChild(span);
+        });
+      }
+
+      /* =======================================================
+         3. ENVELOPE SECRETO (COMEÇA FECHADO POR PADRÃO)
+         ======================================================= */
+      const envelopeStage = document.getElementById("envelope-stage");
+      const envelopeToggleBtn = document.getElementById("envelope-toggle-btn");
+      const closeLetterBtn = document.getElementById("close-letter-btn");
+      const letterWrapper = document.getElementById("letter-card-wrapper");
+      const envelopeHint = document.getElementById("envelope-hint");
+      let isLetterOpen = false;
+
+      function setLetterState(open) {
+        isLetterOpen = open;
+        envelopeStage.classList.toggle("is-open", isLetterOpen);
+        envelopeStage.setAttribute("aria-expanded", String(isLetterOpen));
+        letterWrapper.classList.toggle("is-visible", isLetterOpen);
+
+        if (isLetterOpen) {
+          envelopeToggleBtn.textContent = "Fechar Envelope ✉️";
+          envelopeHint.textContent = "Carta aberta 💖";
+          launchConfetti(60);
+        } else {
+          envelopeToggleBtn.textContent = "Abrir Envelope 💌";
+          envelopeHint.textContent = "Toque para abrir";
+        }
+      }
+
+      function toggleLetter() {
+        setLetterState(!isLetterOpen);
+      }
+
+      envelopeStage.addEventListener("click", toggleLetter);
+      envelopeStage.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          toggleLetter();
+        }
+      });
+      envelopeToggleBtn.addEventListener("click", toggleLetter);
+      closeLetterBtn.addEventListener("click", function () {
+        setLetterState(false);
+        envelopeStage.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+
+      /* =======================================================
+         4. QUIZ DO NOSSO AMOR (7 PERGUNTAS EXATAS)
          ======================================================= */
       const QUIZ_DATA = [
         {
-          question: "Qual é o nosso grande sonho de lugar para morar um dia? 🌍",
+          question: "Qual é o nosso grande sonho de lugar para morar um dia?",
           options: [
             {
               text: "Numa ilha deserta sem internet",
               correct: false,
-              feedback: "Até parece relaxante por uns dias, mas o nosso sonho mesmo é Londres ou Nova York! 🇬🇧🗽"
+              feedback: "Até parece relaxante por uns dias, mas o nosso sonho mesmo é Londres ou Nova York! 🇬🇧🇺🇸"
             },
             {
-              text: "Londres ou Nova York 🇬🇧🗽",
+              text: "Londres ou Nova York 🇬🇧🇺🇸",
               correct: true,
-              feedback: "Acertou! Só falta decidir entre o charme chuvoso de Londres ou as luzes de NY ✨"
+              feedback: "Acertou! Só falta decidir entre o charme de Londres ou as luzes de Nova York ✨"
             },
             {
               text: "Em Marte com os alienígenas",
               correct: false,
-              feedback: "Marte fica longe demais pra levar nossos cachorros e gatos! 😂 O nosso sonho é Londres ou NY!"
+              feedback: "Marte fica longe demais! 😂 O nosso grande sonho é Londres ou Nova York 🇬🇧🇺🇸"
             }
           ]
         },
         {
-          question: "Como vai ser a nossa futura casa em relação a animais? 🏡",
+          question: "Como vai ser a nossa futura casa em relação a animais?",
           options: [
             {
               text: "Sem nenhum bichinho",
@@ -1497,119 +1670,230 @@
             {
               text: "Cheia de cachorros e gatos 🐶🐱",
               correct: true,
-              feedback: "Exatamente! A melhor e mais fofa bagunça do mundo! 🐾"
+              feedback: "Exatamente! A melhor e mais fofa bagunça do mundo! 🐾❤️"
             },
             {
               text: "Só com plantas de plástico",
               correct: false,
-              feedback: "Jamais! Queremos muitos latidos, miados e carinho pela casa toda! 🐾"
+              feedback: "Jamais! Queremos muitos latidos, miados e carinho pela casa toda! 🐶🐱"
             }
           ]
         },
         {
-          question: "Qual é uma das coisas que a gente mais ama fazer juntos? ✨",
+          question: "Qual é uma das coisas que a gente mais ama fazer juntos?",
           options: [
             {
-              text: "Arrumar as malas e viajar ✈️",
+              text: "Arrumar as malas e viajar ✈️🌍",
               correct: true,
-              feedback: "Sim! Já podemos ir pensando no nosso próximo destino juntos! 🧳"
+              feedback: "Sim! Já podemos ir pensando no nosso próximo destino juntos! 🧳✨"
             },
             {
               text: "Pegar fila gigante no banco",
               correct: false,
-              feedback: "Com você até a fila fica melhor, mas arrumar as malas e viajar ganha de lavada! ✈️"
+              feedback: "Com você até a fila fica melhor, mas arrumar as malas e viajar ganha de lavada! ✈️🌍"
             },
             {
               text: "Ficar preso no trânsito",
               correct: false,
-              feedback: "Só se for a caminho do aeroporto! O que a gente ama mesmo é viajar! ✈️"
+              feedback: "Só se for a caminho do aeroporto! O que a gente ama mesmo é viajar! ✈️🌍"
             }
           ]
         },
         {
-          question: "Qual é a data especial que a gente já está esperando para comemorar nosso aniversário de namoro? 🗓️",
+          question: "Qual data super especial estamos esperando chegar na contagem regressiva?",
           options: [
             {
               text: "30 de fevereiro",
               correct: false,
-              feedback: "Hahaha esse dia nem existe! A nossa data é 9 de janeiro de 2027 ❤️"
+              feedback: "Hahaha esse dia nem existe! A nossa data especial é 9 de janeiro de 2027 🗓️❤️"
             },
             {
-              text: "9 de janeiro de 2027 ❤️",
+              text: "9 de janeiro de 2027 🗓️❤️",
               correct: true,
               feedback: "Isso mesmo! 09/01/2027 já está marcado no coração (e tem contagem regressiva lá embaixo!) 💑"
             },
             {
               text: "25 de dezembro",
               correct: false,
-              feedback: "Fica pertinho, mas é logo depois das festas: 9 de janeiro de 2027! ❤️"
+              feedback: "Fica pertinho, mas é logo depois das festas: 9 de janeiro de 2027! 🗓️❤️"
             }
           ]
         },
         {
-          question: "Num domingo perfeito em Londres ou Nova York, qual seria o nosso plano? ☕",
+          question: "O que combina mais com a gente num dia perfeito?",
           options: [
-            {
-              text: "Tomar um café gostoso, passear pela cidade e voltar pros nossos pets 🐶🐱",
-              correct: true,
-              feedback: "O plano dos sonhos! Café, passeio de mãos dadas e nossos bichinhos esperando em casa 💖"
-            },
             {
               text: "Ficar resolvendo boleto o dia inteiro",
               correct: false,
-              feedback: "Deus me livre! Domingo em Londres ou NY é pra tomar café e passear juntinhos ☕✨"
+              feedback: "Deus me livre! Dia perfeito é explorar um lugar novo de mãos dadas ✨"
             },
             {
-              text: "Limpar o teto",
+              text: "Explorar um lugar novo de mãos dadas ✨",
+              correct: true,
+              feedback: "Acertou em cheio! Não existe programa melhor do que descobrir o mundo ao seu lado 💖"
+            },
+            {
+              text: "Limpar o teto da casa",
               correct: false,
-              feedback: "Hahaha nem pensar! Preferimos um café gostoso, passeio de mãos dadas e voltar pros pets! 🐶🐱"
+              feedback: "Hahaha nem pensar! Preferimos explorar um lugar novo de mãos dadas ✨"
             }
           ]
         },
         {
-          question: "O que NUNCA pode faltar quando a gente viaja junto? 🧳",
+          question: "Quem é a aniversariante mais incrível, linda e especial do mundo hoje?",
           options: [
             {
-              text: "Mau humor",
-              correct: false,
-              feedback: "Isso passa longe da gente! O que não falta são boas risadas e muitas fotos 📸✨"
-            },
-            {
-              text: "Boas risadas, vontade de explorar e muitas fotos 📸✨",
+              text: "A) Diana 💖",
               correct: true,
-              feedback: "Com certeza! Cada viagem com você vira a melhor memória do mundo! 🌍"
+              feedback: "100% certa! Feliz aniversário, meu amor! 🎉🎂"
             },
             {
-              text: "Esquecer o passaporte",
-              correct: false,
-              feedback: "Bate na madeira! Passaporte sempre na mão, com boas risadas e muitas fotos 📸"
+              text: "B) A dona do meu coração 🥰",
+              correct: true,
+              feedback: "100% certa! Feliz aniversário, meu amor! 🎉🎂"
+            },
+            {
+              text: "C) Com certeza a Diana! 🎉",
+              correct: true,
+              feedback: "100% certa! Feliz aniversário, meu amor! 🎉🎂"
             }
           ]
         },
         {
-          question: "Pergunta final: quem é a aniversariante mais linda, incrível e amada do mundo hoje? 🎂",
+          question: "O quanto eu te amo?",
           options: [
             {
-              text: "A Diana! 💖",
-              correct: true,
-              feedback: "100% certa! Feliz aniversário, meu amor! 🎉🎂"
+              text: "Um pouquinho só",
+              correct: false,
+              feedback: "Nada de pouquinho! Eu te amo mais do que todas as viagens que ainda vamos fazer juntos ♾️❤️"
             },
             {
-              text: "Com certeza a Diana! ✨",
+              text: "Mais do que todas as viagens que ainda vamos fazer juntos ♾️❤️",
               correct: true,
-              feedback: "100% certa! Feliz aniversário, meu amor! 🎉🎂"
+              feedback: "Exatamente! E olha que ainda vamos viajar muito juntos nessa vida! ✈️♾️❤️"
             },
             {
-              text: "Obviamente a Diana! 👑",
-              correct: true,
-              feedback: "100% certa! Feliz aniversário, meu amor! 🎉🎂"
+              text: "Só nos finais de semana",
+              correct: false,
+              feedback: "Todos os dias, a cada segundo — mais do que todas as viagens que ainda vamos fazer juntos ♾️❤️"
             }
           ]
         }
       ];
 
+      let currentQuizIdx = 0;
+      let quizScore = 0;
+      let quizAnswered = false;
+
+      const quizActiveView = document.getElementById("quiz-active-view");
+      const quizResultView = document.getElementById("quiz-result-view");
+      const quizStepText = document.getElementById("quiz-step-text");
+      const quizScoreText = document.getElementById("quiz-score-text");
+      const quizProgressFill = document.getElementById("quiz-progress-fill");
+      const quizQuestionText = document.getElementById("quiz-question-text");
+      const quizOptionsList = document.getElementById("quiz-options-list");
+      const quizFeedbackBox = document.getElementById("quiz-feedback-box");
+      const quizNextRow = document.getElementById("quiz-next-row");
+      const quizNextBtn = document.getElementById("quiz-next-btn");
+      const quizFinalScore = document.getElementById("quiz-final-score");
+      const quizFinalMsg = document.getElementById("quiz-final-msg");
+      const quizRestartBtn = document.getElementById("quiz-restart-btn");
+
+      function renderQuiz() {
+        const item = QUIZ_DATA[currentQuizIdx];
+        quizAnswered = false;
+
+        quizStepText.textContent = "Pergunta " + (currentQuizIdx + 1) + " de " + QUIZ_DATA.length;
+        quizScoreText.textContent = "Acertos: " + quizScore + " ⭐";
+        quizProgressFill.style.width = (((currentQuizIdx + 1) / QUIZ_DATA.length) * 100) + "%";
+        quizQuestionText.textContent = item.question;
+
+        quizFeedbackBox.className = "quiz-feedback";
+        quizFeedbackBox.textContent = "";
+        quizNextRow.classList.remove("show");
+        quizNextBtn.textContent = currentQuizIdx === QUIZ_DATA.length - 1 ? "Ver Resultado 🏆" : "Próxima Pergunta →";
+
+        quizOptionsList.innerHTML = "";
+        item.options.forEach(function (opt, idx) {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "quiz-option-btn";
+          btn.textContent = opt.text;
+          btn.addEventListener("click", function () {
+            handleQuizAnswer(idx);
+          });
+          quizOptionsList.appendChild(btn);
+        });
+      }
+
+      function handleQuizAnswer(selectedIdx) {
+        if (quizAnswered) return;
+        quizAnswered = true;
+
+        const item = QUIZ_DATA[currentQuizIdx];
+        const chosen = item.options[selectedIdx];
+        const buttons = quizOptionsList.querySelectorAll(".quiz-option-btn");
+
+        if (chosen.correct) {
+          quizScore++;
+          quizScoreText.textContent = "Acertos: " + quizScore + " ⭐";
+        }
+
+        buttons.forEach(function (btn, idx) {
+          btn.disabled = true;
+          const opt = item.options[idx];
+          if (idx === selectedIdx) {
+            btn.classList.add(opt.correct ? "is-correct" : "is-wrong");
+          } else if (opt.correct) {
+            btn.classList.add("is-correct");
+          } else {
+            btn.classList.add("is-muted");
+          }
+        });
+
+        quizFeedbackBox.textContent = chosen.feedback;
+        quizFeedbackBox.className = "quiz-feedback show " + (chosen.correct ? "correct" : "wrong");
+        quizNextRow.classList.add("show");
+      }
+
+      function nextQuizQuestion() {
+        if (currentQuizIdx < QUIZ_DATA.length - 1) {
+          currentQuizIdx++;
+          renderQuiz();
+        } else {
+          showQuizResult();
+        }
+      }
+
+      function showQuizResult() {
+        quizActiveView.style.display = "none";
+        quizResultView.classList.add("show");
+        quizFinalScore.textContent = String(quizScore);
+
+        if (quizScore === QUIZ_DATA.length) {
+          quizFinalMsg.textContent = "Pontuação perfeita, Diana! Você sabe tudo sobre a gente — agora corre lá embaixo para raspar a sua surpresa de aniversário! 💖🎁";
+        } else if (quizScore >= 5) {
+          quizFinalMsg.textContent = "Mandou super bem, meu amor! Quase gabaritou — agora vai lá embaixo descobrir a sua surpresa de aniversário! 🎉💖";
+        } else {
+          quizFinalMsg.textContent = "O importante é que a gente se ama demais (e que você pode jogar de novo quando quiser)! Agora corre para ver a surpresa! ❤️🎁";
+        }
+
+        launchConfetti(160);
+      }
+
+      function restartQuiz() {
+        currentQuizIdx = 0;
+        quizScore = 0;
+        quizResultView.classList.remove("show");
+        quizActiveView.style.display = "block";
+        renderQuiz();
+      }
+
+      quizNextBtn.addEventListener("click", nextQuizQuestion);
+      quizRestartBtn.addEventListener("click", restartQuiz);
+
       /* =======================================================
-         DADOS DOS 8 MOTIVOS
+         5. BARALHO DE 8 MOTIVOS
          ======================================================= */
       const REASONS_DATA = [
         {
@@ -1654,127 +1938,119 @@
         }
       ];
 
-      /* =======================================================
-         DADOS DAS 4 POLAROIDS
-         ======================================================= */
-      const POLAROIDS_DATA = [
-        {
-          id: "pol-1",
-          src: "foto1.jpg.jpeg",
-          alt: "Nossa lembrança 1",
-          caption: "Nossas viagens ✈️",
-          bg: "linear-gradient(135deg, #e5f2fb, #fbe6ea)"
-        },
-        {
-          id: "pol-2",
-          src: "foto2.jpg.jpeg",
-          alt: "Nossa lembrança 2",
-          caption: "Nosso sonho: Londres ou NY 🇬🇧🗽",
-          bg: "linear-gradient(135deg, #f6e7ee, #f8ecd5)"
-        },
-        {
-          id: "pol-3",
-          src: "foto3.jpg.jpeg",
-          alt: "Nossa lembrança 3",
-          caption: "Amor por pets 🐶🐱",
-          bg: "linear-gradient(135deg, #fdf0dd, #fbe3e8)"
-        },
-        {
-          id: "pol-4",
-          src: "foto4.jpg.jpeg",
-          alt: "Nossa lembrança 4",
-          caption: "Feliz Aniversário, Diana! 🎂",
-          bg: "linear-gradient(135deg, #fde2e8, #fdf4df)"
+      let currentReasonIdx = 0;
+      const reasonCard = document.getElementById("reason-card");
+      const reasonCounterText = document.getElementById("reason-counter-text");
+      const reasonProgressFill = document.getElementById("reason-progress-fill");
+      const reasonNumBg = document.getElementById("reason-num-bg");
+      const reasonIcon = document.getElementById("reason-icon");
+      const reasonTitle = document.getElementById("reason-title");
+      const reasonDesc = document.getElementById("reason-desc");
+      const reasonPrevBtn = document.getElementById("reason-prev-btn");
+      const reasonNextBtn = document.getElementById("reason-next-btn");
+
+      function updateReasonCard(animate) {
+        const applyContent = function () {
+          const r = REASONS_DATA[currentReasonIdx];
+          reasonCounterText.textContent = (currentReasonIdx + 1) + " / " + REASONS_DATA.length;
+          reasonProgressFill.style.width = (((currentReasonIdx + 1) / REASONS_DATA.length) * 100) + "%";
+          reasonNumBg.textContent = String(currentReasonIdx + 1).padStart(2, "0");
+          reasonIcon.textContent = r.icon;
+          reasonTitle.textContent = r.title;
+          reasonDesc.textContent = r.desc;
+        };
+
+        if (!animate) {
+          applyContent();
+          return;
         }
-      ];
 
-      /* =======================================================
-         6. MURAL DE POLAROIDS PERMANENTES
-         ======================================================= */
-      function renderPolaroids() {
-        const grid = document.getElementById("polaroids-grid");
-        grid.innerHTML = "";
-
-        POLAROIDS_DATA.forEach(function (p) {
-          const card = document.createElement("article");
-          card.className = "polaroid-card";
-
-          card.innerHTML =
-            '<div class="polaroid-frame">' +
-              '<div class="polaroid-media" id="media-' + p.id + '" style="background:' + p.bg + ';">' +
-                '<img src="' + p.src + '" alt="' + p.alt + '" />' +
-              '</div>' +
-            '</div>' +
-            '<h3 class="polaroid-caption">' + p.caption + '</h3>';
-
-          grid.appendChild(card);
-        });
+        reasonCard.classList.add("is-switching");
+        setTimeout(function () {
+          applyContent();
+          reasonCard.classList.remove("is-switching");
+        }, 160);
       }
 
+      function nextReason() {
+        currentReasonIdx = (currentReasonIdx + 1) % REASONS_DATA.length;
+        updateReasonCard(true);
+      }
+
+      function prevReason() {
+        currentReasonIdx = (currentReasonIdx - 1 + REASONS_DATA.length) % REASONS_DATA.length;
+        updateReasonCard(true);
+      }
+
+      reasonCard.addEventListener("click", nextReason);
+      reasonCard.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          nextReason();
+        }
+      });
+      reasonNextBtn.addEventListener("click", nextReason);
+      reasonPrevBtn.addEventListener("click", prevReason);
+
       /* =======================================================
-         7. RASPADINHA DOURADA (HTML5 CANVAS MOUSE + TOUCH)
+         6. RASPADINHA DOURADA (MOUSE + TOUCH)
          ======================================================= */
       const scratchCanvas = document.getElementById("scratch-canvas");
       const scratchCtx = scratchCanvas.getContext("2d");
+      const revealSurpriseBtn = document.getElementById("reveal-surprise-btn");
+      const resetSurpriseBtn = document.getElementById("reset-surprise-btn");
       let isDrawing = false;
       let surpriseRevealed = false;
       let scratchSteps = 0;
 
-      window.initScratchCard = function () {
-        try {
-          const box = document.getElementById("scratch-box");
-          const rect = box.getBoundingClientRect();
-          const width = Math.max(rect.width, 280);
-          const height = Math.max(rect.height, 260);
-          const dpr = window.devicePixelRatio || 1;
+      function initScratchCard() {
+        const box = document.getElementById("scratch-box");
+        const rect = box.getBoundingClientRect();
+        const width = Math.max(rect.width, 280);
+        const height = Math.max(rect.height, 260);
+        const dpr = window.devicePixelRatio || 1;
 
-          scratchCanvas.width = width * dpr;
-          scratchCanvas.height = height * dpr;
-          scratchCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        scratchCanvas.width = width * dpr;
+        scratchCanvas.height = height * dpr;
+        scratchCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-          surpriseRevealed = false;
-          scratchSteps = 0;
-          scratchCanvas.style.opacity = "1";
-          scratchCanvas.style.pointerEvents = "auto";
-          document.getElementById("reveal-surprise-btn").style.display = "inline-flex";
-          document.getElementById("reset-surprise-btn").style.display = "none";
+        surpriseRevealed = false;
+        scratchSteps = 0;
+        scratchCanvas.style.opacity = "1";
+        scratchCanvas.style.pointerEvents = "auto";
+        revealSurpriseBtn.style.display = "inline-flex";
+        resetSurpriseBtn.style.display = "none";
 
-          // Camada dourada metálica
-          const grad = scratchCtx.createLinearGradient(0, 0, width, height);
-          grad.addColorStop(0, "#c89643");
-          grad.addColorStop(0.35, "#e6c37a");
-          grad.addColorStop(0.55, "#f5e0ad");
-          grad.addColorStop(0.75, "#d8a856");
-          grad.addColorStop(1, "#b88336");
+        const grad = scratchCtx.createLinearGradient(0, 0, width, height);
+        grad.addColorStop(0, "#c89643");
+        grad.addColorStop(0.35, "#e6c37a");
+        grad.addColorStop(0.55, "#f5e0ad");
+        grad.addColorStop(0.75, "#d8a856");
+        grad.addColorStop(1, "#b88336");
 
-          scratchCtx.globalCompositeOperation = "source-over";
-          scratchCtx.fillStyle = grad;
-          scratchCtx.fillRect(0, 0, width, height);
+        scratchCtx.globalCompositeOperation = "source-over";
+        scratchCtx.fillStyle = grad;
+        scratchCtx.fillRect(0, 0, width, height);
 
-          // Brilhos sutis sobre o dourado
-          scratchCtx.fillStyle = "rgba(255, 255, 255, 0.22)";
-          for (let x = 18; x < width; x += 30) {
-            for (let y = 18; y < height; y += 30) {
-              scratchCtx.beginPath();
-              scratchCtx.arc(x, y, 2, 0, Math.PI * 2);
-              scratchCtx.fill();
-            }
+        scratchCtx.fillStyle = "rgba(255, 255, 255, 0.22)";
+        for (let x = 18; x < width; x += 30) {
+          for (let y = 18; y < height; y += 30) {
+            scratchCtx.beginPath();
+            scratchCtx.arc(x, y, 2, 0, Math.PI * 2);
+            scratchCtx.fill();
           }
-
-          // Texto central da raspadinha
-          scratchCtx.fillStyle = "#ffffff";
-          scratchCtx.textAlign = "center";
-          scratchCtx.textBaseline = "middle";
-          scratchCtx.font = '700 20px "Playfair Display", Georgia, serif';
-          scratchCtx.fillText("Raspe aqui para revelar ✨", width / 2, height / 2 - 12);
-
-          scratchCtx.font = '600 13px "Poppins", system-ui, sans-serif';
-          scratchCtx.fillStyle = "rgba(255, 255, 255, 0.94)";
-          scratchCtx.fillText("🎁 Sua surpresa especial de aniversário", width / 2, height / 2 + 18);
-        } catch (err) {
-          console.error("Erro ao inicializar raspadinha:", err);
         }
-      };
+
+        scratchCtx.fillStyle = "#ffffff";
+        scratchCtx.textAlign = "center";
+        scratchCtx.textBaseline = "middle";
+        scratchCtx.font = '700 20px "Playfair Display", Georgia, serif';
+        scratchCtx.fillText("Raspe aqui para revelar ✨", width / 2, height / 2 - 12);
+
+        scratchCtx.font = '600 13px "Poppins", system-ui, sans-serif';
+        scratchCtx.fillStyle = "rgba(255, 255, 255, 0.94)";
+        scratchCtx.fillText("🎁 Sua surpresa especial de aniversário", width / 2, height / 2 + 18);
+      }
 
       function getPointerPos(e) {
         const rect = scratchCanvas.getBoundingClientRect();
@@ -1812,22 +2088,22 @@
           }
 
           if (totalSampled > 0 && cleared / totalSampled > 0.45) {
-            window.revealSurprise();
+            revealSurprise();
           }
         } catch (err) {
-          console.error("Erro ao calcular porcentagem raspada:", err);
+          console.error("Erro ao verificar raspadinha:", err);
         }
       }
 
-      window.revealSurprise = function () {
+      function revealSurprise() {
         if (surpriseRevealed) return;
         surpriseRevealed = true;
         scratchCanvas.style.opacity = "0";
         scratchCanvas.style.pointerEvents = "none";
-        document.getElementById("reveal-surprise-btn").style.display = "none";
-        document.getElementById("reset-surprise-btn").style.display = "inline-flex";
-        window.launchConfetti(190);
-      };
+        revealSurpriseBtn.style.display = "none";
+        resetSurpriseBtn.style.display = "inline-flex";
+        launchConfetti(190);
+      }
 
       scratchCanvas.addEventListener("mousedown", function (e) {
         isDrawing = true;
@@ -1863,9 +2139,17 @@
         isDrawing = false;
       });
 
+      revealSurpriseBtn.addEventListener("click", revealSurprise);
+      resetSurpriseBtn.addEventListener("click", initScratchCard);
+
       /* =======================================================
-         8. CONTAGEM REGRESSIVA EM TEMPO REAL (09/01/2027)
+         7. CONTAGEM REGRESSIVA AO VIVO (09/01/2027)
          ======================================================= */
+      const cdDays = document.getElementById("cd-days");
+      const cdHours = document.getElementById("cd-hours");
+      const cdMinutes = document.getElementById("cd-minutes");
+      const cdSeconds = document.getElementById("cd-seconds");
+
       function updateCountdown() {
         const target = new Date(2027, 0, 9, 0, 0, 0).getTime();
         const now = Date.now();
@@ -1876,28 +2160,35 @@
         const minutes = Math.floor((diff / (1000 * 60)) % 60);
         const seconds = Math.floor((diff / 1000) % 60);
 
-        document.getElementById("cd-days").textContent = String(days).padStart(2, "0");
-        document.getElementById("cd-hours").textContent = String(hours).padStart(2, "0");
-        document.getElementById("cd-minutes").textContent = String(minutes).padStart(2, "0");
-        document.getElementById("cd-seconds").textContent = String(seconds).padStart(2, "0");
+        cdDays.textContent = String(days).padStart(2, "0");
+        cdHours.textContent = String(hours).padStart(2, "0");
+        cdMinutes.textContent = String(minutes).padStart(2, "0");
+        cdSeconds.textContent = String(seconds).padStart(2, "0");
       }
 
       /* =======================================================
-         9. INICIALIZAÇÃO IMEDIATA AO CARREGAR
+         8. BOTÕES DE CONFETES E INICIALIZAÇÃO
          ======================================================= */
+      document.getElementById("hero-confetti-btn").addEventListener("click", function () {
+        launchConfetti(140);
+      });
+
+      document.getElementById("footer-confetti-btn").addEventListener("click", function () {
+        launchConfetti(140);
+      });
+
       function initApp() {
         resizeConfettiCanvas();
         initFloatingDecor();
+        setLetterState(false); // Garante envelope fechado ao carregar
         renderQuiz();
         updateReasonCard(false);
-        renderPolaroids();
-        window.initScratchCard();
+        initScratchCard();
         updateCountdown();
         setInterval(updateCountdown, 1000);
 
-        // Confetes sutis de boas-vindas
         setTimeout(function () {
-          window.launchConfetti(75);
+          launchConfetti(70);
         }, 400);
       }
 
@@ -1910,7 +2201,7 @@
       window.addEventListener("resize", function () {
         resizeConfettiCanvas();
         if (!surpriseRevealed) {
-          window.initScratchCard();
+          initScratchCard();
         }
       });
     })();
