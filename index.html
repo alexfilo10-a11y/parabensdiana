@@ -871,7 +871,6 @@
       border-radius: 14px;
       box-shadow: 0 14px 32px rgba(59, 38, 45, 0.12);
       border: 1px solid rgba(214, 90, 122, 0.16);
-      cursor: pointer;
       transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.32s ease;
       text-align: center;
     }
@@ -899,10 +898,9 @@
       width: 100%;
       height: 100%;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 12px;
+      padding: 0;
     }
 
     .polaroid-media img {
@@ -910,45 +908,6 @@
       height: 100%;
       object-fit: cover;
       display: block;
-    }
-
-    .polaroid-placeholder-emoji {
-      font-size: 2.8rem;
-      margin-bottom: 6px;
-    }
-
-    .polaroid-placeholder-cta {
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--wine-soft);
-      background: rgba(255, 255, 255, 0.85);
-      padding: 4px 10px;
-      border-radius: var(--radius-pill);
-    }
-
-    .polaroid-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(59, 38, 45, 0.38);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: opacity 0.25s ease;
-    }
-
-    .polaroid-card:hover .polaroid-overlay {
-      opacity: 1;
-    }
-
-    .polaroid-overlay span {
-      background: #ffffff;
-      color: var(--wine-soft);
-      font-size: 0.8rem;
-      font-weight: 600;
-      padding: 6px 14px;
-      border-radius: var(--radius-pill);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
 
     .polaroid-caption {
@@ -1165,9 +1124,6 @@
 
   <!-- Canvas de confetes em tela cheia -->
   <canvas id="confetti-canvas" aria-hidden="true"></canvas>
-
-  <!-- Input oculto para trocar fotos nas Polaroids -->
-  <input type="file" id="polaroid-file-input" class="hidden-input" accept="image/*" />
 
   <!-- =========================================================
        STICKY NAVBAR
@@ -1410,7 +1366,7 @@
           <span class="section-kicker">Capítulo 04</span>
           <h2 class="section-title">Nossas Memórias 📸</h2>
           <p class="section-subtitle">
-            Clique em qualquer polaroid para adicionar uma foto nossa do seu celular ou computador!
+            Alguns dos nossos momentos favoritos guardados com todo carinho.
           </p>
         </div>
 
@@ -1704,337 +1660,37 @@
       const POLAROIDS_DATA = [
         {
           id: "pol-1",
-          emoji: "✈️🌍",
+          src: "foto1.jpg.jpeg",
+          alt: "Nossa lembrança 1",
           caption: "Nossas viagens ✈️",
           bg: "linear-gradient(135deg, #e5f2fb, #fbe6ea)"
         },
         {
           id: "pol-2",
-          emoji: "🇬🇧🗽",
+          src: "foto2.jpg.jpeg",
+          alt: "Nossa lembrança 2",
           caption: "Nosso sonho: Londres ou NY 🇬🇧🗽",
           bg: "linear-gradient(135deg, #f6e7ee, #f8ecd5)"
         },
         {
           id: "pol-3",
-          emoji: "🐶🐱",
+          src: "foto3.jpg.jpeg",
+          alt: "Nossa lembrança 3",
           caption: "Amor por pets 🐶🐱",
           bg: "linear-gradient(135deg, #fdf0dd, #fbe3e8)"
         },
         {
           id: "pol-4",
-          emoji: "🎂💖",
+          src: "foto4.jpg.jpeg",
+          alt: "Nossa lembrança 4",
           caption: "Feliz Aniversário, Diana! 🎂",
           bg: "linear-gradient(135deg, #fde2e8, #fdf4df)"
         }
       ];
 
       /* =======================================================
-         1. SISTEMA DE CONFETES (HTML5 CANVAS PURO)
+         6. MURAL DE POLAROIDS PERMANENTES
          ======================================================= */
-      const confettiCanvas = document.getElementById("confetti-canvas");
-      const confettiCtx = confettiCanvas.getContext("2d");
-      const CONFETTI_COLORS = ["#d65a7a", "#8c2f4b", "#d4a359", "#f3dfb6", "#f4a7b9", "#ffffff"];
-      let confettiPieces = [];
-      let confettiLoopActive = false;
-
-      function resizeConfettiCanvas() {
-        confettiCanvas.width = window.innerWidth;
-        confettiCanvas.height = window.innerHeight;
-      }
-
-      window.launchConfetti = function (amount) {
-        const count = amount || 120;
-        const centerX = window.innerWidth / 2;
-        const originY = window.innerHeight * 0.28;
-
-        for (let i = 0; i < count; i++) {
-          const angle = Math.random() * Math.PI * 2;
-          const speed = Math.random() * 9 + 4;
-          confettiPieces.push({
-            x: centerX + (Math.random() - 0.5) * window.innerWidth * 0.65,
-            y: originY + (Math.random() - 0.5) * 90,
-            vx: Math.cos(angle) * speed * 0.85,
-            vy: Math.sin(angle) * speed - Math.random() * 6 - 2,
-            size: Math.random() * 8 + 5,
-            color: CONFETTI_COLORS[Math.floor(Math.random() * CONFETTI_COLORS.length)],
-            rotation: Math.random() * 360,
-            rotSpeed: (Math.random() - 0.5) * 11,
-            shape: Math.random() > 0.35 ? "rect" : "circle",
-            alpha: 1
-          });
-        }
-
-        if (!confettiLoopActive) {
-          confettiLoopActive = true;
-          animateConfetti();
-        }
-      };
-
-      function animateConfetti() {
-        confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
-
-        for (let i = confettiPieces.length - 1; i >= 0; i--) {
-          const p = confettiPieces[i];
-          p.x += p.vx;
-          p.y += p.vy;
-          p.vy += 0.22;
-          p.vx *= 0.99;
-          p.rotation += p.rotSpeed;
-
-          if (p.y > confettiCanvas.height * 0.82) {
-            p.alpha -= 0.025;
-          }
-
-          if (p.alpha <= 0 || p.y > confettiCanvas.height + 30) {
-            confettiPieces.splice(i, 1);
-            continue;
-          }
-
-          confettiCtx.save();
-          confettiCtx.globalAlpha = Math.max(0, p.alpha);
-          confettiCtx.translate(p.x, p.y);
-          confettiCtx.rotate((p.rotation * Math.PI) / 180);
-          confettiCtx.fillStyle = p.color;
-
-          if (p.shape === "rect") {
-            confettiCtx.fillRect(-p.size / 2, -p.size / 3, p.size, p.size * 0.6);
-          } else {
-            confettiCtx.beginPath();
-            confettiCtx.arc(0, 0, p.size / 2.2, 0, Math.PI * 2);
-            confettiCtx.fill();
-          }
-          confettiCtx.restore();
-        }
-
-        if (confettiPieces.length > 0) {
-          requestAnimationFrame(animateConfetti);
-        } else {
-          confettiLoopActive = false;
-        }
-      }
-
-      /* =======================================================
-         2. DECORAÇÃO FLUTUANTE DA CAPA
-         ======================================================= */
-      function initFloatingDecor() {
-        const layer = document.getElementById("floating-layer");
-        if (!layer) return;
-        const symbols = ["♥", "✨", "✦", "♡"];
-        for (let i = 0; i < 16; i++) {
-          const span = document.createElement("span");
-          span.className = "floating-item";
-          span.textContent = symbols[i % symbols.length];
-          span.style.left = (Math.random() * 90 + 5) + "%";
-          span.style.top = (Math.random() * 82 + 8) + "%";
-          span.style.fontSize = (Math.random() * 14 + 13) + "px";
-          span.style.color = i % 2 === 0 ? "#d4a359" : "#d65a7a";
-          span.style.setProperty("--dur", (Math.random() * 4 + 5) + "s");
-          span.style.setProperty("--del", (Math.random() * 3) + "s");
-          layer.appendChild(span);
-        }
-      }
-
-      /* =======================================================
-         3. ENVELOPE E CARTA INTERATIVA
-         ======================================================= */
-      let letterOpen = false;
-
-      window.toggleLetter = function () {
-        const stage = document.getElementById("envelope-stage");
-        const wrapper = document.getElementById("letter-card-wrapper");
-        const toggleBtn = document.getElementById("envelope-toggle-btn");
-
-        letterOpen = !letterOpen;
-
-        if (letterOpen) {
-          stage.classList.add("is-open");
-          stage.setAttribute("aria-expanded", "true");
-          wrapper.classList.add("is-visible");
-          toggleBtn.textContent = "Fechar carta ✉️";
-          window.launchConfetti(60);
-        } else {
-          stage.classList.remove("is-open");
-          stage.setAttribute("aria-expanded", "false");
-          wrapper.classList.remove("is-visible");
-          toggleBtn.textContent = "Clique para abrir a carta ✉️";
-        }
-      };
-
-      const envelopeStage = document.getElementById("envelope-stage");
-      envelopeStage.addEventListener("keydown", function (e) {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          window.toggleLetter();
-        }
-      });
-
-      /* =======================================================
-         4. MINI-QUIZ INTERATIVO (7 PERGUNTAS)
-         ======================================================= */
-      let quizIdx = 0;
-      let quizScore = 0;
-      let quizLocked = false;
-
-      function renderQuiz() {
-        const q = QUIZ_DATA[quizIdx];
-        const total = QUIZ_DATA.length;
-        quizLocked = false;
-
-        document.getElementById("quiz-step-text").textContent = "Pergunta " + (quizIdx + 1) + " de " + total;
-        document.getElementById("quiz-score-text").textContent = "Acertos: " + quizScore + " ⭐";
-        document.getElementById("quiz-progress-fill").style.width = (((quizIdx + 1) / total) * 100) + "%";
-        document.getElementById("quiz-question-text").textContent = q.question;
-
-        const optionsList = document.getElementById("quiz-options-list");
-        optionsList.innerHTML = "";
-
-        q.options.forEach(function (opt, index) {
-          const btn = document.createElement("button");
-          btn.type = "button";
-          btn.className = "quiz-option-btn";
-          btn.textContent = opt.text;
-          btn.addEventListener("click", function () {
-            handleQuizAnswer(index);
-          });
-          optionsList.appendChild(btn);
-        });
-
-        const feedbackBox = document.getElementById("quiz-feedback-box");
-        feedbackBox.className = "quiz-feedback";
-        feedbackBox.textContent = "";
-
-        document.getElementById("quiz-next-row").classList.remove("show");
-      }
-
-      function handleQuizAnswer(selectedIndex) {
-        if (quizLocked) return;
-        quizLocked = true;
-
-        const q = QUIZ_DATA[quizIdx];
-        const chosen = q.options[selectedIndex];
-        const buttons = document.querySelectorAll("#quiz-options-list .quiz-option-btn");
-
-        buttons.forEach(function (btn, idx) {
-          btn.disabled = true;
-          const opt = q.options[idx];
-          if (idx === selectedIndex) {
-            btn.classList.add(chosen.correct ? "is-correct" : "is-wrong");
-          } else if (opt.correct) {
-            btn.classList.add("is-correct");
-          } else {
-            btn.classList.add("is-muted");
-          }
-        });
-
-        if (chosen.correct) {
-          quizScore++;
-          document.getElementById("quiz-score-text").textContent = "Acertos: " + quizScore + " ⭐";
-        }
-
-        const feedbackBox = document.getElementById("quiz-feedback-box");
-        feedbackBox.textContent = chosen.feedback;
-        feedbackBox.className = "quiz-feedback show " + (chosen.correct ? "correct" : "wrong");
-
-        const nextBtn = document.getElementById("quiz-next-btn");
-        nextBtn.textContent =
-          quizIdx === QUIZ_DATA.length - 1 ? "Ver resultado final 🎉" : "Próxima Pergunta →";
-        document.getElementById("quiz-next-row").classList.add("show");
-      }
-
-      window.nextQuizQuestion = function () {
-        if (quizIdx < QUIZ_DATA.length - 1) {
-          quizIdx++;
-          renderQuiz();
-        } else {
-          showQuizResult();
-        }
-      };
-
-      function showQuizResult() {
-        document.getElementById("quiz-active-view").style.display = "none";
-        const resultView = document.getElementById("quiz-result-view");
-        resultView.classList.add("show");
-        document.getElementById("quiz-final-score").textContent = String(quizScore);
-
-        let msg = "";
-        if (quizScore === QUIZ_DATA.length) {
-          msg = "Gabaritou tudo, meu amor! 😍 Você conhece a nossa história e os nossos sonhos melhor do que ninguém. Feliz aniversário, Diana! 💖🎂";
-        } else if (quizScore >= 5) {
-          msg = "Mandou super bem, aniversariante! ✨ Quase 100% — e o mais importante já é certeza: eu te amo demais! 💖✈️";
-        } else {
-          msg = "Hahaha o importante é se divertir no seu dia especial! 🎂 Já temos desculpa pra comemorar muito hoje e planejar nossa próxima viagem! ❤️";
-        }
-
-        document.getElementById("quiz-final-msg").textContent = msg;
-        window.launchConfetti(180);
-      }
-
-      window.restartQuiz = function () {
-        quizIdx = 0;
-        quizScore = 0;
-        document.getElementById("quiz-result-view").classList.remove("show");
-        document.getElementById("quiz-active-view").style.display = "block";
-        renderQuiz();
-      };
-
-      /* =======================================================
-         5. BARALHO DE MOTIVOS (8 MOTIVOS)
-         ======================================================= */
-      let reasonIdx = 0;
-
-      function updateReasonCard(animate) {
-        const card = document.getElementById("reason-card");
-        const item = REASONS_DATA[reasonIdx];
-        const total = REASONS_DATA.length;
-
-        function applyContent() {
-          document.getElementById("reason-num-bg").textContent = String(reasonIdx + 1).padStart(2, "0");
-          document.getElementById("reason-icon").textContent = item.icon;
-          document.getElementById("reason-title").textContent = item.title;
-          document.getElementById("reason-desc").textContent = item.desc;
-          document.getElementById("reason-counter-text").textContent = (reasonIdx + 1) + " / " + total;
-          document.getElementById("reason-progress-fill").style.width = (((reasonIdx + 1) / total) * 100) + "%";
-        }
-
-        if (!animate) {
-          applyContent();
-          return;
-        }
-
-        card.classList.add("is-switching");
-        setTimeout(function () {
-          applyContent();
-          card.classList.remove("is-switching");
-        }, 180);
-      }
-
-      window.nextReason = function () {
-        reasonIdx = (reasonIdx + 1) % REASONS_DATA.length;
-        updateReasonCard(true);
-      };
-
-      window.prevReason = function () {
-        reasonIdx = (reasonIdx - 1 + REASONS_DATA.length) % REASONS_DATA.length;
-        updateReasonCard(true);
-      };
-
-      const reasonCard = document.getElementById("reason-card");
-      reasonCard.addEventListener("keydown", function (e) {
-        if (e.key === "Enter" || e.key === " " || e.key === "ArrowRight") {
-          e.preventDefault();
-          window.nextReason();
-        } else if (e.key === "ArrowLeft") {
-          e.preventDefault();
-          window.prevReason();
-        }
-      });
-
-      /* =======================================================
-         6. MURAL DE POLAROIDS COM UPLOAD LOCAL
-         ======================================================= */
-      let selectedPolaroidId = null;
-      const fileInput = document.getElementById("polaroid-file-input");
-
       function renderPolaroids() {
         const grid = document.getElementById("polaroids-grid");
         grid.innerHTML = "";
@@ -2042,56 +1698,18 @@
         POLAROIDS_DATA.forEach(function (p) {
           const card = document.createElement("article");
           card.className = "polaroid-card";
-          card.setAttribute("role", "button");
-          card.setAttribute("tabindex", "0");
-          card.setAttribute("aria-label", "Adicionar foto para " + p.caption);
 
           card.innerHTML =
             '<div class="polaroid-frame">' +
               '<div class="polaroid-media" id="media-' + p.id + '" style="background:' + p.bg + ';">' +
-                '<div class="polaroid-placeholder-emoji">' + p.emoji + '</div>' +
-                '<span class="polaroid-placeholder-cta">📷 Adicionar foto</span>' +
+                '<img src="' + p.src + '" alt="' + p.alt + '" />' +
               '</div>' +
-              '<div class="polaroid-overlay"><span>📷 Escolher foto</span></div>' +
             '</div>' +
             '<h3 class="polaroid-caption">' + p.caption + '</h3>';
-
-          function triggerUpload() {
-            selectedPolaroidId = p.id;
-            fileInput.value = "";
-            fileInput.click();
-          }
-
-          card.addEventListener("click", triggerUpload);
-          card.addEventListener("keydown", function (e) {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              triggerUpload();
-            }
-          });
 
           grid.appendChild(card);
         });
       }
-
-      fileInput.addEventListener("change", function (e) {
-        try {
-          const file = e.target.files && e.target.files[0];
-          if (!file || !selectedPolaroidId) return;
-
-          const reader = new FileReader();
-          reader.onload = function (evt) {
-            const target = document.getElementById("media-" + selectedPolaroidId);
-            if (target) {
-              target.style.padding = "0";
-              target.innerHTML = '<img src="' + evt.target.result + '" alt="Foto escolhida na polaroid" />';
-            }
-          };
-          reader.readAsDataURL(file);
-        } catch (err) {
-          console.error("Erro ao carregar foto:", err);
-        }
-      });
 
       /* =======================================================
          7. RASPADINHA DOURADA (HTML5 CANVAS MOUSE + TOUCH)
