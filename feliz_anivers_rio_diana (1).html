@@ -1,0 +1,2210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feliz Aniversário, Diana! 🎂✨</title>
+
+  <!-- Fontes elegantes com fallback seguro -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* =========================================================
+       VARIÁVEIS DE DESIGN E RESET BASE
+       ========================================================= */
+    :root {
+      --bg-cream: #fff9f7;
+      --bg-blush: #fdeff2;
+      --card-white: #ffffff;
+      --rose-antique: #d65a7a;
+      --rose-hover: #be4867;
+      --wine-soft: #8c2f4b;
+      --gold: #d4a359;
+      --gold-light: #f3dfb6;
+      --gold-dark: #a67831;
+      --text-main: #3b262d;
+      --text-muted: #6f555e;
+      --border-soft: rgba(214, 90, 122, 0.18);
+      --shadow-soft: 0 14px 36px rgba(140, 47, 75, 0.08);
+      --shadow-card: 0 18px 42px rgba(140, 47, 75, 0.11);
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --radius-pill: 999px;
+      --font-serif: "Playfair Display", Georgia, "Times New Roman", serif;
+      --font-sans: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 78px;
+    }
+
+    body {
+      background-color: var(--bg-cream);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.65;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Canvas fixo em tela cheia para os confetes */
+    #confetti-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    /* =========================================================
+       BARRA DE NAVEGAÇÃO FIXA (STICKY NAVBAR)
+       ========================================================= */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 249, 247, 0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-soft);
+      box-shadow: 0 4px 18px rgba(140, 47, 75, 0.05);
+    }
+
+    .navbar-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .nav-brand {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--wine-soft);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-main);
+      font-size: 0.88rem;
+      font-weight: 500;
+      padding: 7px 12px;
+      border-radius: var(--radius-pill);
+      transition: background-color 0.25s ease, color 0.25s ease;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      background-color: var(--bg-blush);
+      color: var(--wine-soft);
+      outline: none;
+    }
+
+    /* =========================================================
+       ESTRUTURA PADRÃO DAS SEÇÕES E BOTÕES
+       ========================================================= */
+    .section {
+      padding: 76px 20px;
+      position: relative;
+    }
+
+    .section-alt {
+      background: linear-gradient(180deg, #fff9f7 0%, #fdf0f3 50%, #fff9f7 100%);
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .container-narrow {
+      max-width: 720px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-kicker {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.9rem, 4.5vw, 2.85rem);
+      color: var(--wine-soft);
+      line-height: 1.2;
+      font-weight: 700;
+    }
+
+    .section-subtitle {
+      margin-top: 12px;
+      color: var(--text-muted);
+      font-size: clamp(0.95rem, 2.2vw, 1.06rem);
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 26px;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-sans);
+      font-size: 0.96rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.25s ease, background-color 0.25s ease, filter 0.25s ease;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--rose-antique), var(--wine-soft));
+      color: #ffffff;
+      box-shadow: 0 10px 24px rgba(140, 47, 75, 0.26);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgba(140, 47, 75, 0.34);
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, #c69142, #e1b86d, #b88336);
+      color: #ffffff;
+      box-shadow: 0 10px 24px rgba(184, 131, 54, 0.3);
+    }
+
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.05);
+    }
+
+    .btn-outline {
+      background: var(--card-white);
+      color: var(--wine-soft);
+      border: 1.5px solid rgba(212, 163, 89, 0.65);
+      box-shadow: 0 6px 18px rgba(140, 47, 75, 0.06);
+    }
+
+    .btn-outline:hover {
+      background: var(--bg-blush);
+      transform: translateY(-2px);
+    }
+
+    /* =========================================================
+       1. CAPA (HERO)
+       ========================================================= */
+    .hero {
+      min-height: calc(100vh - 64px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 64px 20px 80px;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(214, 90, 122, 0.14), transparent 42%),
+        radial-gradient(circle at 85% 80%, rgba(212, 163, 89, 0.2), transparent 46%),
+        linear-gradient(180deg, #fff9f7 0%, #fef1f4 60%, #fff9f7 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 740px;
+      margin: 0 auto;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 9px 22px;
+      border-radius: var(--radius-pill);
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(212, 163, 89, 0.55);
+      color: var(--gold-dark);
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      box-shadow: 0 6px 20px rgba(212, 163, 89, 0.14);
+      margin-bottom: 24px;
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.5rem, 7vw, 4.4rem);
+      font-weight: 700;
+      line-height: 1.12;
+      color: var(--wine-soft);
+      margin-bottom: 20px;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.18rem);
+      color: var(--text-muted);
+      max-width: 580px;
+      margin: 0 auto 36px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+    }
+
+    /* Brilhos sutis flutuando na capa */
+    .floating-layer {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .floating-item {
+      position: absolute;
+      opacity: 0.45;
+      animation: floatGentle var(--dur, 7s) ease-in-out infinite;
+      animation-delay: var(--del, 0s);
+      user-select: none;
+    }
+
+    @keyframes floatGentle {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-22px) rotate(10deg);
+      }
+    }
+
+    /* =========================================================
+       2. SEÇÃO DA CARTA (ENVELOPE FECHADO POR PADRÃO)
+       ========================================================= */
+    .envelope-area {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .envelope-stage {
+      perspective: 1000px;
+      width: 100%;
+      max-width: 410px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .envelope-box {
+      position: relative;
+      width: 100%;
+      height: 245px;
+      border-radius: 20px;
+      background: linear-gradient(145deg, #f8dbe2, #efc3cf);
+      box-shadow: var(--shadow-card);
+      border: 1px solid rgba(214, 90, 122, 0.25);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .envelope-stage:hover .envelope-box {
+      transform: translateY(-4px);
+    }
+
+    /* Aba triangular do envelope */
+    .envelope-flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 150px;
+      background: linear-gradient(180deg, #fce7ec 0%, #f1c4d0 100%);
+      clip-path: polygon(0 0, 50% 62%, 100% 0);
+      transform-origin: top center;
+      transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 4;
+      box-shadow: 0 6px 14px rgba(140, 47, 75, 0.12);
+    }
+
+    .envelope-stage.is-open .envelope-flap {
+      transform: rotateX(180deg);
+      z-index: 1;
+    }
+
+    /* Dobras laterais e inferiores */
+    .envelope-folds {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      pointer-events: none;
+      background:
+        linear-gradient(31deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.45) 50%, transparent 50.6%),
+        linear-gradient(-31deg, rgba(255, 255, 255, 0.36) 0%, rgba(255, 255, 255, 0.36) 50%, transparent 50.6%);
+    }
+
+    /* Folha interna visível no envelope */
+    .envelope-inner-sheet {
+      position: absolute;
+      inset: 18px 22px;
+      background: #ffffff;
+      border-radius: 12px;
+      border: 1px solid rgba(212, 163, 89, 0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 16px;
+      z-index: 2;
+      transition: transform 0.6s ease;
+    }
+
+    .envelope-stage.is-open .envelope-inner-sheet {
+      transform: translateY(-10px);
+    }
+
+    .envelope-inner-sheet .to-label {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.3rem;
+      color: var(--wine-soft);
+      font-weight: 700;
+    }
+
+    .envelope-inner-sheet .tap-hint {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* Selo dourado central */
+    .envelope-seal {
+      position: absolute;
+      top: 42%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f3dfb6, #d4a359, #a67831);
+      border: 2px solid rgba(255, 255, 255, 0.85);
+      box-shadow: 0 8px 18px rgba(140, 47, 75, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-size: 1.4rem;
+      z-index: 5;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+
+    .envelope-stage.is-open .envelope-seal {
+      transform: translate(-50%, -50%) scale(0.4);
+      opacity: 0;
+    }
+
+    .envelope-toggle-wrap {
+      margin-top: 22px;
+    }
+
+    /* Cartão da carta: OCULTO por padrão */
+    .letter-card-wrapper {
+      width: 100%;
+      max-width: 720px;
+      margin-top: 28px;
+      display: none;
+    }
+
+    .letter-card-wrapper.is-visible {
+      display: block;
+      animation: fadeSlideDown 0.55s ease forwards;
+    }
+
+    @keyframes fadeSlideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-14px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .letter-card {
+      background: var(--card-white);
+      border-radius: var(--radius-lg);
+      padding: clamp(24px, 5vw, 44px);
+      box-shadow: var(--shadow-card);
+      border: 1px solid rgba(212, 163, 89, 0.35);
+      position: relative;
+    }
+
+    .letter-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding-bottom: 16px;
+      margin-bottom: 22px;
+      border-bottom: 1px dashed rgba(214, 90, 122, 0.3);
+    }
+
+    .letter-greeting {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(1.3rem, 3.2vw, 1.65rem);
+      color: var(--rose-antique);
+      font-weight: 700;
+    }
+
+    .letter-tag {
+      font-size: 0.76rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--gold-dark);
+      background: #fdf6e7;
+      padding: 5px 12px;
+      border-radius: var(--radius-pill);
+    }
+
+    .letter-body p {
+      font-size: clamp(0.96rem, 2.2vw, 1.05rem);
+      color: var(--text-main);
+      margin-bottom: 16px;
+      line-height: 1.78;
+    }
+
+    .letter-body p.letter-closing {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.25rem;
+      color: var(--wine-soft);
+      font-weight: 700;
+      margin-top: 22px;
+      margin-bottom: 0;
+    }
+
+    .letter-footer {
+      margin-top: 28px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border-soft);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .letter-sign {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--wine-soft);
+      font-weight: 600;
+    }
+
+    /* =========================================================
+       3. MINI-QUIZ INTERATIVO
+       ========================================================= */
+    .quiz-card {
+      background: var(--card-white);
+      border-radius: var(--radius-lg);
+      padding: clamp(22px, 5vw, 40px);
+      box-shadow: var(--shadow-card);
+      border: 1px solid rgba(212, 163, 89, 0.32);
+    }
+
+    .quiz-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .quiz-step {
+      color: var(--rose-antique);
+    }
+
+    .quiz-score {
+      color: var(--gold-dark);
+      background: #fdf6e7;
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 10px;
+      background: var(--bg-blush);
+      border-radius: var(--radius-pill);
+      overflow: hidden;
+      margin-bottom: 26px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 14%;
+      background: linear-gradient(90deg, var(--rose-antique), var(--gold));
+      border-radius: var(--radius-pill);
+      transition: width 0.4s ease;
+    }
+
+    .quiz-question {
+      font-family: var(--font-serif);
+      font-size: clamp(1.22rem, 3vw, 1.58rem);
+      color: var(--wine-soft);
+      font-weight: 700;
+      line-height: 1.35;
+      margin-bottom: 22px;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .quiz-option-btn {
+      width: 100%;
+      text-align: left;
+      padding: 15px 20px;
+      border-radius: var(--radius-md);
+      border: 1.5px solid rgba(214, 90, 122, 0.28);
+      background: #fffbfa;
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      font-size: 0.97rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.22s ease;
+    }
+
+    .quiz-option-btn:hover:not(:disabled) {
+      background: var(--bg-blush);
+      border-color: var(--rose-antique);
+      transform: translateX(3px);
+    }
+
+    .quiz-option-btn:disabled {
+      cursor: default;
+    }
+
+    .quiz-option-btn.is-correct {
+      background: #ecfdf3;
+      border-color: #2e9d63;
+      color: #155736;
+      font-weight: 600;
+    }
+
+    .quiz-option-btn.is-wrong {
+      background: #fff1f2;
+      border-color: #e1516c;
+      color: #8f1f37;
+    }
+
+    .quiz-option-btn.is-muted {
+      opacity: 0.58;
+    }
+
+    .quiz-feedback {
+      margin-top: 20px;
+      padding: 15px 18px;
+      border-radius: var(--radius-md);
+      font-size: 0.95rem;
+      font-weight: 500;
+      display: none;
+    }
+
+    .quiz-feedback.show {
+      display: block;
+      animation: fadeSlideDown 0.3s ease;
+    }
+
+    .quiz-feedback.correct {
+      background: #ecfdf3;
+      border: 1px solid #a7e4c2;
+      color: #155736;
+    }
+
+    .quiz-feedback.wrong {
+      background: #fef2f4;
+      border: 1px solid #f4b8c5;
+      color: var(--wine-soft);
+    }
+
+    .quiz-next-row {
+      margin-top: 22px;
+      display: none;
+      justify-content: flex-end;
+    }
+
+    .quiz-next-row.show {
+      display: flex;
+    }
+
+    .quiz-result {
+      display: none;
+      text-align: center;
+      padding: 12px 6px;
+    }
+
+    .quiz-result.show {
+      display: block;
+      animation: fadeSlideDown 0.45s ease;
+    }
+
+    .quiz-trophy {
+      width: 78px;
+      height: 78px;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #fdf3d8, #f2d28b);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.3rem;
+      box-shadow: 0 10px 24px rgba(212, 163, 89, 0.28);
+    }
+
+    .quiz-result-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      color: var(--wine-soft);
+      margin-bottom: 12px;
+    }
+
+    .quiz-result-msg {
+      color: var(--text-muted);
+      max-width: 500px;
+      margin: 0 auto 28px;
+      font-size: 1rem;
+    }
+
+    .quiz-result-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    /* =========================================================
+       4. BARALHO DE MOTIVOS
+       ========================================================= */
+    .reasons-wrapper {
+      max-width: 580px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .reasons-counter-bar {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .reasons-counter-text {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--rose-antique);
+      min-width: 48px;
+      text-align: left;
+    }
+
+    .reason-card {
+      background: var(--card-white);
+      border-radius: var(--radius-lg);
+      padding: clamp(28px, 6vw, 46px) clamp(22px, 5vw, 38px);
+      min-height: 280px;
+      box-shadow: var(--shadow-card);
+      border: 1px solid rgba(212, 163, 89, 0.35);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.25s ease, opacity 0.25s ease, border-color 0.25s ease;
+    }
+
+    .reason-card:hover {
+      border-color: var(--rose-antique);
+      transform: translateY(-3px);
+    }
+
+    .reason-card.is-switching {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+
+    .reason-number-bg {
+      position: absolute;
+      top: 14px;
+      right: 22px;
+      font-family: var(--font-serif);
+      font-size: 3.4rem;
+      font-weight: 700;
+      color: rgba(214, 90, 122, 0.12);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .reason-icon {
+      width: 68px;
+      height: 68px;
+      border-radius: 20px;
+      background: var(--bg-blush);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin-bottom: 18px;
+    }
+
+    .reason-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.35rem, 3.2vw, 1.75rem);
+      color: var(--wine-soft);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .reason-desc {
+      color: var(--text-muted);
+      font-size: 0.99rem;
+      max-width: 440px;
+    }
+
+    .reason-hint {
+      margin-top: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--gold-dark);
+    }
+
+    .reasons-controls {
+      margin-top: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    /* =========================================================
+       5. MURAL DE POLAROIDS (FOTOS REAIS DO GITHUB)
+       ========================================================= */
+    .polaroids-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 28px;
+      margin-top: 12px;
+    }
+
+    .polaroid-card {
+      background: #ffffff;
+      padding: 14px 14px 22px;
+      border-radius: 14px;
+      box-shadow: 0 14px 32px rgba(59, 38, 45, 0.12);
+      border: 1px solid rgba(214, 90, 122, 0.16);
+      transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.32s ease;
+      text-align: center;
+    }
+
+    .polaroid-card:nth-child(1) { transform: rotate(-2deg); }
+    .polaroid-card:nth-child(2) { transform: rotate(1.8deg); }
+    .polaroid-card:nth-child(3) { transform: rotate(-1.5deg); }
+    .polaroid-card:nth-child(4) { transform: rotate(2deg); }
+
+    .polaroid-card:hover {
+      transform: translateY(-8px) rotate(0deg) scale(1.03);
+      box-shadow: 0 22px 42px rgba(140, 47, 75, 0.18);
+    }
+
+    .polaroid-frame {
+      width: 100%;
+      height: 260px;
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--bg-blush);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .polaroid-frame img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .polaroid-caption {
+      font-family: var(--font-serif);
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: var(--wine-soft);
+      margin-top: 16px;
+    }
+
+    /* =========================================================
+       6. RASPADINHA DOURADA (SURPRESA)
+       ========================================================= */
+    .scratch-frame {
+      max-width: 580px;
+      margin: 0 auto;
+      padding: 6px;
+      border-radius: 28px;
+      background: linear-gradient(125deg, #c69142, #f4dca6, #d4a359, #f7e6bf, #b88336);
+      box-shadow: 0 20px 44px rgba(184, 131, 54, 0.28);
+    }
+
+    .scratch-box {
+      position: relative;
+      width: 100%;
+      min-height: 290px;
+      border-radius: 22px;
+      background: #fffdf9;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .gift-reveal-content {
+      padding: clamp(24px, 5vw, 38px);
+      text-align: center;
+      width: 100%;
+    }
+
+    .gift-badge {
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: var(--radius-pill);
+      background: #fdf3dc;
+      color: var(--gold-dark);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .gift-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.25rem, 3.3vw, 1.65rem);
+      color: var(--wine-soft);
+      font-weight: 700;
+      line-height: 1.4;
+      max-width: 470px;
+      margin: 0 auto;
+    }
+
+    .gift-footer-note {
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px dashed rgba(212, 163, 89, 0.55);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 320px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--gold-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    #scratch-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 10;
+      cursor: crosshair;
+      touch-action: none;
+      transition: opacity 0.65s ease;
+    }
+
+    .scratch-actions {
+      margin-top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    /* =========================================================
+       7. RODAPÉ COM CONTAGEM REGRESSIVA EM DESTAQUE
+       ========================================================= */
+    .footer {
+      background: linear-gradient(180deg, #fff9f7 0%, #f8e3ea 100%);
+      border-top: 1px solid var(--border-soft);
+      padding: 60px 20px 68px;
+      text-align: center;
+    }
+
+    .footer-love {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(1.35rem, 3.2vw, 1.8rem);
+      color: var(--wine-soft);
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+
+    .countdown-box {
+      max-width: 540px;
+      margin: 0 auto 28px;
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(212, 163, 89, 0.45);
+      border-radius: var(--radius-lg);
+      padding: 24px 18px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .countdown-label {
+      font-size: 0.96rem;
+      font-weight: 600;
+      color: var(--wine-soft);
+      margin-bottom: 18px;
+    }
+
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .countdown-unit {
+      background: var(--bg-cream);
+      border: 1px solid rgba(214, 90, 122, 0.22);
+      border-radius: 16px;
+      padding: 14px 6px;
+    }
+
+    .countdown-value {
+      display: block;
+      font-family: var(--font-serif);
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      font-weight: 700;
+      color: var(--rose-antique);
+      line-height: 1.1;
+    }
+
+    .countdown-name {
+      display: block;
+      margin-top: 4px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-size: 0.9rem;
+    }
+
+    .footer-links button,
+    .footer-links a {
+      background: none;
+      border: none;
+      color: var(--wine-soft);
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .footer-links button:hover,
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* =========================================================
+       AJUSTES RESPONSIVOS PARA CELULAR
+       ========================================================= */
+    @media (max-width: 640px) {
+      .navbar-inner {
+        justify-content: center;
+        padding: 10px 10px;
+      }
+
+      .nav-links a {
+        font-size: 0.8rem;
+        padding: 6px 9px;
+      }
+
+      .section {
+        padding: 60px 16px;
+      }
+
+      .countdown-grid {
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Canvas de confetes em tela cheia -->
+  <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+  <!-- =========================================================
+       BARRA DE NAVEGAÇÃO FIXA
+       ========================================================= -->
+  <header class="navbar">
+    <nav class="navbar-inner" aria-label="Navegação principal">
+      <a href="#inicio" class="nav-brand">💖 Diana</a>
+      <div class="nav-links">
+        <a href="#inicio">Início</a>
+        <a href="#carta">💌 Carta</a>
+        <a href="#quiz">💘 Quiz</a>
+        <a href="#motivos">❤️ Motivos</a>
+        <a href="#fotos">📸 Fotos</a>
+        <a href="#surpresa">🎁 Surpresa</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- =========================================================
+         1. CAPA (HERO) - 100% FOCADA NO ANIVERSÁRIO DA DIANA
+         ========================================================= -->
+    <section id="inicio" class="hero">
+      <div class="floating-layer" id="floating-layer" aria-hidden="true"></div>
+
+      <div class="hero-content">
+        <div class="hero-badge">✨ Hoje o dia é todo seu ✨</div>
+        <h1 class="hero-title">Feliz Aniversário, Diana! 🎂✨</h1>
+        <p class="hero-subtitle">
+          Preparei esse cantinho especial cheio de amor, lembranças, um quiz sobre a gente e uma surpresa no final.
+        </p>
+        <div class="hero-actions">
+          <button type="button" class="btn btn-gold" id="hero-confetti-btn">
+            Soltar Confetes 🎉
+          </button>
+          <a href="#carta" class="btn btn-primary">
+            Abrir minha carta 💌
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         2. ENVELOPE SECRETO (#carta) - COMEÇA FECHADO
+         ========================================================= -->
+    <section id="carta" class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-kicker">Capítulo 01</span>
+          <h2 class="section-title">Uma Carta Para Você 💌</h2>
+          <p class="section-subtitle">
+            Toque no envelope ou no botão abaixo para abrir a carta que escrevi especialmente para o seu dia.
+          </p>
+        </div>
+
+        <div class="envelope-area">
+          <!-- Envelope clicável -->
+          <div
+            id="envelope-stage"
+            class="envelope-stage"
+            role="button"
+            tabindex="0"
+            aria-expanded="false"
+            aria-controls="letter-card-wrapper"
+          >
+            <div class="envelope-box">
+              <div class="envelope-flap"></div>
+              <div class="envelope-folds"></div>
+              <div class="envelope-inner-sheet">
+                <span class="to-label">Para Diana ❤️</span>
+                <span class="tap-hint" id="envelope-hint">Toque para abrir</span>
+              </div>
+              <div class="envelope-seal" aria-hidden="true">♥</div>
+            </div>
+          </div>
+
+          <!-- Botão claro para abrir/fechar -->
+          <div class="envelope-toggle-wrap">
+            <button type="button" id="envelope-toggle-btn" class="btn btn-primary">
+              Abrir Envelope 💌
+            </button>
+          </div>
+
+          <!-- Cartão da carta (começa oculto) -->
+          <div id="letter-card-wrapper" class="letter-card-wrapper">
+            <article class="letter-card">
+              <div class="letter-card-header">
+                <span class="letter-greeting">Feliz aniversário, Diana! 🎂✨</span>
+                <span class="letter-tag">Com todo meu amor</span>
+              </div>
+
+              <div class="letter-body">
+                <p>
+                  Hoje é o seu dia, e eu queria criar algo especial só seu para te lembrar do quanto você é incrível e do quanto eu te amo. ❤️
+                </p>
+                <p>
+                  Cada momento ao seu lado só me dá ainda mais certeza de que você é a minha melhor companhia, minha parceira de vida e o meu lugar favorito no mundo. Já estou até contando os dias na contagem regressiva para o nosso dia 9 de janeiro de 2027! 🗓️💑
+                </p>
+                <p>
+                  Uma das coisas que eu mais amo na gente é a nossa paixão por viajar. ✈️🌍 Cada destino novo, cada risada no caminho e cada lembrança que a gente constrói juntos vale ouro pra mim — e eu mal posso esperar por todos os lugares que ainda vamos explorar lado a lado.
+                </p>
+                <p>
+                  E claro, eu nunca esqueço do nosso grande sonho: um dia morar em Londres 🇬🇧 ou em Nova York 🗽. Seja tomando um café quentinho num dia chuvoso em Londres ou caminhando pelas ruas iluminadas de NY, o que mais importa pra mim é estar com você... e com a nossa futura casa cheia de cachorros e gatos fazendo a melhor bagunça do mundo! 🐶🐱🏡
+                </p>
+                <p>
+                  Que esse novo ciclo da sua vida seja leve, iluminado, cheio de saúde, conquistas e momentos inesquecíveis. Obrigado por existir e por fazer a minha vida tão mais feliz.
+                </p>
+                <p class="letter-closing">
+                  Eu te amo muito, hoje e sempre! 💖🥂
+                </p>
+              </div>
+
+              <div class="letter-footer">
+                <span class="letter-sign">Com amor, seu namorado ❤️</span>
+                <button type="button" id="close-letter-btn" class="btn btn-outline">
+                  Fechar Carta ✉️
+                </button>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         3. QUIZ DO NOSSO AMOR (#quiz)
+         ========================================================= -->
+    <section id="quiz" class="section">
+      <div class="container-narrow">
+        <div class="section-header">
+          <span class="section-kicker">Capítulo 02</span>
+          <h2 class="section-title">Quiz do Nosso Amor 💘</h2>
+          <p class="section-subtitle">
+            Vamos ver se a aniversariante acerta todas sobre a gente!
+          </p>
+        </div>
+
+        <div class="quiz-card">
+          <div id="quiz-active-view">
+            <div class="quiz-meta">
+              <span id="quiz-step-text" class="quiz-step">Pergunta 1 de 7</span>
+              <span id="quiz-score-text" class="quiz-score">Acertos: 0 ⭐</span>
+            </div>
+
+            <div class="progress-track">
+              <div id="quiz-progress-fill" class="progress-fill"></div>
+            </div>
+
+            <h3 id="quiz-question-text" class="quiz-question"></h3>
+
+            <div id="quiz-options-list" class="quiz-options"></div>
+
+            <div id="quiz-feedback-box" class="quiz-feedback" role="status" aria-live="polite"></div>
+
+            <div id="quiz-next-row" class="quiz-next-row">
+              <button type="button" id="quiz-next-btn" class="btn btn-primary">
+                Próxima Pergunta →
+              </button>
+            </div>
+          </div>
+
+          <div id="quiz-result-view" class="quiz-result">
+            <div class="quiz-trophy">🏆</div>
+            <h3 class="quiz-result-title">
+              Você acertou <span id="quiz-final-score">7</span> de 7! 🎉
+            </h3>
+            <p id="quiz-final-msg" class="quiz-result-msg"></p>
+            <div class="quiz-result-actions">
+              <button type="button" id="quiz-restart-btn" class="btn btn-outline">
+                Jogar Novamente 🔄
+              </button>
+              <a href="#surpresa" class="btn btn-gold">
+                Ir para a Surpresa 🎁
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         4. BARALHO DE 8 MOTIVOS (#motivos)
+         ========================================================= -->
+    <section id="motivos" class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-kicker">Capítulo 03</span>
+          <h2 class="section-title">8 Motivos Pelos Quais Eu Te Amo ❤️</h2>
+          <p class="section-subtitle">
+            Clique no cartão ou use os botões para descobrir cada motivo.
+          </p>
+        </div>
+
+        <div class="reasons-wrapper">
+          <div class="reasons-counter-bar">
+            <span id="reason-counter-text" class="reasons-counter-text">1 / 8</span>
+            <div class="progress-track" style="margin-bottom: 0; flex: 1;">
+              <div id="reason-progress-fill" class="progress-fill" style="width: 12.5%;"></div>
+            </div>
+          </div>
+
+          <div
+            id="reason-card"
+            class="reason-card"
+            role="button"
+            tabindex="0"
+            aria-label="Ver próximo motivo"
+          >
+            <span id="reason-num-bg" class="reason-number-bg">01</span>
+            <div id="reason-icon" class="reason-icon">✨</div>
+            <h3 id="reason-title" class="reason-title">O seu sorriso</h3>
+            <p id="reason-desc" class="reason-desc">
+              Basta um sorriso seu para iluminar o meu dia inteiro e deixar tudo mais leve e bonito.
+            </p>
+            <span class="reason-hint">Clique no cartão para avançar →</span>
+          </div>
+
+          <div class="reasons-controls">
+            <button type="button" id="reason-prev-btn" class="btn btn-outline">
+              ← Anterior
+            </button>
+            <button type="button" id="reason-next-btn" class="btn btn-primary">
+              Próximo →
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         5. MURAL DE POLAROIDS (#fotos)
+         ========================================================= -->
+    <section id="fotos" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-kicker">Capítulo 04</span>
+          <h2 class="section-title">Nossas Memórias 📸</h2>
+          <p class="section-subtitle">
+            Alguns dos nossos momentos favoritos guardados com todo carinho.
+          </p>
+        </div>
+
+        <div class="polaroids-grid">
+          <article class="polaroid-card">
+            <div class="polaroid-frame">
+              <img
+                src="./foto1.jpg.jpeg"
+                alt="Nossos melhores momentos"
+                onerror="this.onerror=null; this.src='https://placehold.co/600x520/fdeff2/8c2f4b?text=Foto+1+%F0%9F%92%95';"
+              />
+            </div>
+            <h3 class="polaroid-caption">Nossos melhores momentos 💕</h3>
+          </article>
+
+          <article class="polaroid-card">
+            <div class="polaroid-frame">
+              <img
+                src="./foto2.jpg.jpeg"
+                alt="Viajando pelo mundo juntos"
+                onerror="this.onerror=null; this.src='https://placehold.co/600x520/fdeff2/8c2f4b?text=Foto+2+%E2%9C%88%EF%B8%8F';"
+              />
+            </div>
+            <h3 class="polaroid-caption">Viajando pelo mundo juntos ✈️</h3>
+          </article>
+
+          <article class="polaroid-card">
+            <div class="polaroid-frame">
+              <img
+                src="./foto3.jpg.jpeg"
+                alt="Sonhando com Londres e Nova York"
+                onerror="this.onerror=null; this.src='https://placehold.co/600x520/fdeff2/8c2f4b?text=Foto+3+%F0%9F%97%BD';"
+              />
+            </div>
+            <h3 class="polaroid-caption">Sonhando com Londres &amp; NY 🇬🇧🗽</h3>
+          </article>
+
+          <article class="polaroid-card">
+            <div class="polaroid-frame">
+              <img
+                src="./foto4.jpg.jpeg"
+                alt="Sempre ao seu lado"
+                onerror="this.onerror=null; this.src='https://placehold.co/600x520/fdeff2/8c2f4b?text=Foto+4+%F0%9F%90%B6%F0%9F%90%B1';"
+              />
+            </div>
+            <h3 class="polaroid-caption">Sempre ao seu lado 🐶🐱❤️</h3>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         6. RASPADINHA DOURADA (#surpresa)
+         ========================================================= -->
+    <section id="surpresa" class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-kicker">Capítulo Final</span>
+          <h2 class="section-title">Sua Surpresa de Aniversário 🎁✨</h2>
+          <p class="section-subtitle">
+            Raspe o cartão dourado abaixo com o dedo ou mouse para revelar seu presente!
+          </p>
+        </div>
+
+        <div class="scratch-frame">
+          <div id="scratch-box" class="scratch-box">
+            <div class="gift-reveal-content">
+              <div class="gift-badge">🎁 VALE-PRESENTE ESPECIAL 🎁</div>
+              <p class="gift-title">
+                Um jantar inesquecível de aniversário + planejamento da nossa próxima viagem juntos + muito amor, carinho e mimos! 💖✈️
+              </p>
+              <div class="gift-footer-note">
+                <span>Para: Diana ❤️</span>
+                <span>Validade: Para sempre</span>
+              </div>
+            </div>
+
+            <canvas id="scratch-canvas" aria-label="Cartão dourado raspável"></canvas>
+          </div>
+        </div>
+
+        <div class="scratch-actions">
+          <button type="button" id="reveal-surprise-btn" class="btn btn-gold">
+            Revelar Surpresa ✨
+          </button>
+          <button type="button" id="reset-surprise-btn" class="btn btn-outline" style="display: none;">
+            Cobrir Novamente 🔄
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================
+       7. RODAPÉ COM CONTAGEM REGRESSIVA AO VIVO (09/01/2027)
+       ========================================================= -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-love">Feito com todo o meu amor para a Diana 💖</p>
+
+      <div class="countdown-box">
+        <p class="countdown-label">
+          Contagem regressiva para o nosso dia 09/01/2027 🗓️❤️
+        </p>
+
+        <div class="countdown-grid" aria-live="polite">
+          <div class="countdown-unit">
+            <span id="cd-days" class="countdown-value">00</span>
+            <span class="countdown-name">Dias</span>
+          </div>
+          <div class="countdown-unit">
+            <span id="cd-hours" class="countdown-value">00</span>
+            <span class="countdown-name">Horas</span>
+          </div>
+          <div class="countdown-unit">
+            <span id="cd-minutes" class="countdown-value">00</span>
+            <span class="countdown-name">Minutos</span>
+          </div>
+          <div class="countdown-unit">
+            <span id="cd-seconds" class="countdown-value">00</span>
+            <span class="countdown-name">Segundos</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <button type="button" id="footer-confetti-btn">Soltar Confetes 🎉</button>
+        <span>•</span>
+        <a href="#inicio">Voltar ao topo ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================
+       JAVASCRIPT PURO (100% AUTOCONTIDO, SEM BIBLIOTECAS EXTERNAS)
+       ========================================================= -->
+  <script>
+    (function () {
+      "use strict";
+
+      /* =======================================================
+         1. CONFETES EM CANVAS HTML5
+         ======================================================= */
+      const confettiCanvas = document.getElementById("confetti-canvas");
+      const confettiCtx = confettiCanvas.getContext("2d");
+      let confettiParticles = [];
+      let confettiFrameId = null;
+
+      const CONFETTI_COLORS = [
+        "#d65a7a", "#8c2f4b", "#d4a359", "#f3dfb6", "#f48fb1", "#ffca28", "#ffffff"
+      ];
+
+      function resizeConfettiCanvas() {
+        confettiCanvas.width = window.innerWidth;
+        confettiCanvas.height = window.innerHeight;
+      }
+
+      function launchConfetti(count) {
+        const total = count || 120;
+        for (let i = 0; i < total; i++) {
+          confettiParticles.push({
+            x: Math.random() * confettiCanvas.width,
+            y: Math.random() * -confettiCanvas.height * 0.45 - 10,
+            w: Math.random() * 8 + 5,
+            h: Math.random() * 5 + 4,
+            color: CONFETTI_COLORS[Math.floor(Math.random() * CONFETTI_COLORS.length)],
+            vx: (Math.random() - 0.5) * 4.2,
+            vy: Math.random() * 3.5 + 2.4,
+            angle: Math.random() * 360,
+            vAngle: (Math.random() - 0.5) * 10,
+            opacity: 1
+          });
+        }
+
+        if (!confettiFrameId) {
+          animateConfetti();
+        }
+      }
+
+      function animateConfetti() {
+        confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+
+        for (let i = confettiParticles.length - 1; i >= 0; i--) {
+          const p = confettiParticles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vy += 0.04;
+          p.angle += p.vAngle;
+
+          if (p.y > confettiCanvas.height * 0.8) {
+            p.opacity -= 0.02;
+          }
+
+          confettiCtx.save();
+          confettiCtx.translate(p.x, p.y);
+          confettiCtx.rotate((p.angle * Math.PI) / 180);
+          confettiCtx.globalAlpha = Math.max(0, p.opacity);
+          confettiCtx.fillStyle = p.color;
+          confettiCtx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+          confettiCtx.restore();
+
+          if (p.y > confettiCanvas.height + 20 || p.opacity <= 0) {
+            confettiParticles.splice(i, 1);
+          }
+        }
+
+        if (confettiParticles.length > 0) {
+          confettiFrameId = requestAnimationFrame(animateConfetti);
+        } else {
+          confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+          confettiFrameId = null;
+        }
+      }
+
+      /* =======================================================
+         2. DECORAÇÃO FLUTUANTE DA CAPA
+         ======================================================= */
+      function initFloatingDecor() {
+        const layer = document.getElementById("floating-layer");
+        const symbols = ["✨", "💖", "🌸", "🎂", "✨", "💕", "🥂", "✨"];
+        layer.innerHTML = "";
+
+        symbols.forEach(function (sym, idx) {
+          const span = document.createElement("span");
+          span.className = "floating-item";
+          span.textContent = sym;
+          span.style.left = (8 + idx * 12) + "%";
+          span.style.top = (14 + ((idx * 23) % 68)) + "%";
+          span.style.fontSize = (18 + (idx % 3) * 8) + "px";
+          span.style.setProperty("--dur", (6 + (idx % 4) * 1.5) + "s");
+          span.style.setProperty("--del", (idx * 0.4) + "s");
+          layer.appendChild(span);
+        });
+      }
+
+      /* =======================================================
+         3. ENVELOPE SECRETO (COMEÇA FECHADO POR PADRÃO)
+         ======================================================= */
+      const envelopeStage = document.getElementById("envelope-stage");
+      const envelopeToggleBtn = document.getElementById("envelope-toggle-btn");
+      const closeLetterBtn = document.getElementById("close-letter-btn");
+      const letterWrapper = document.getElementById("letter-card-wrapper");
+      const envelopeHint = document.getElementById("envelope-hint");
+      let isLetterOpen = false;
+
+      function setLetterState(open) {
+        isLetterOpen = open;
+        envelopeStage.classList.toggle("is-open", isLetterOpen);
+        envelopeStage.setAttribute("aria-expanded", String(isLetterOpen));
+        letterWrapper.classList.toggle("is-visible", isLetterOpen);
+
+        if (isLetterOpen) {
+          envelopeToggleBtn.textContent = "Fechar Envelope ✉️";
+          envelopeHint.textContent = "Carta aberta 💖";
+          launchConfetti(60);
+        } else {
+          envelopeToggleBtn.textContent = "Abrir Envelope 💌";
+          envelopeHint.textContent = "Toque para abrir";
+        }
+      }
+
+      function toggleLetter() {
+        setLetterState(!isLetterOpen);
+      }
+
+      envelopeStage.addEventListener("click", toggleLetter);
+      envelopeStage.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          toggleLetter();
+        }
+      });
+      envelopeToggleBtn.addEventListener("click", toggleLetter);
+      closeLetterBtn.addEventListener("click", function () {
+        setLetterState(false);
+        envelopeStage.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+
+      /* =======================================================
+         4. QUIZ DO NOSSO AMOR (7 PERGUNTAS EXATAS)
+         ======================================================= */
+      const QUIZ_DATA = [
+        {
+          question: "Qual é o nosso grande sonho de lugar para morar um dia?",
+          options: [
+            {
+              text: "Numa ilha deserta sem internet",
+              correct: false,
+              feedback: "Até parece relaxante por uns dias, mas o nosso sonho mesmo é Londres ou Nova York! 🇬🇧🇺🇸"
+            },
+            {
+              text: "Londres ou Nova York 🇬🇧🇺🇸",
+              correct: true,
+              feedback: "Acertou! Só falta decidir entre o charme de Londres ou as luzes de Nova York ✨"
+            },
+            {
+              text: "Em Marte com os alienígenas",
+              correct: false,
+              feedback: "Marte fica longe demais! 😂 O nosso grande sonho é Londres ou Nova York 🇬🇧🇺🇸"
+            }
+          ]
+        },
+        {
+          question: "Como vai ser a nossa futura casa em relação a animais?",
+          options: [
+            {
+              text: "Sem nenhum bichinho",
+              correct: false,
+              feedback: "Sem chance! Nossa casa precisa de patinhas correndo pra todo lado! 🐶🐱"
+            },
+            {
+              text: "Cheia de cachorros e gatos 🐶🐱",
+              correct: true,
+              feedback: "Exatamente! A melhor e mais fofa bagunça do mundo! 🐾❤️"
+            },
+            {
+              text: "Só com plantas de plástico",
+              correct: false,
+              feedback: "Jamais! Queremos muitos latidos, miados e carinho pela casa toda! 🐶🐱"
+            }
+          ]
+        },
+        {
+          question: "Qual é uma das coisas que a gente mais ama fazer juntos?",
+          options: [
+            {
+              text: "Arrumar as malas e viajar ✈️🌍",
+              correct: true,
+              feedback: "Sim! Já podemos ir pensando no nosso próximo destino juntos! 🧳✨"
+            },
+            {
+              text: "Pegar fila gigante no banco",
+              correct: false,
+              feedback: "Com você até a fila fica melhor, mas arrumar as malas e viajar ganha de lavada! ✈️🌍"
+            },
+            {
+              text: "Ficar preso no trânsito",
+              correct: false,
+              feedback: "Só se for a caminho do aeroporto! O que a gente ama mesmo é viajar! ✈️🌍"
+            }
+          ]
+        },
+        {
+          question: "Qual data super especial estamos esperando chegar na contagem regressiva?",
+          options: [
+            {
+              text: "30 de fevereiro",
+              correct: false,
+              feedback: "Hahaha esse dia nem existe! A nossa data especial é 9 de janeiro de 2027 🗓️❤️"
+            },
+            {
+              text: "9 de janeiro de 2027 🗓️❤️",
+              correct: true,
+              feedback: "Isso mesmo! 09/01/2027 já está marcado no coração (e tem contagem regressiva lá embaixo!) 💑"
+            },
+            {
+              text: "25 de dezembro",
+              correct: false,
+              feedback: "Fica pertinho, mas é logo depois das festas: 9 de janeiro de 2027! 🗓️❤️"
+            }
+          ]
+        },
+        {
+          question: "O que combina mais com a gente num dia perfeito?",
+          options: [
+            {
+              text: "Ficar resolvendo boleto o dia inteiro",
+              correct: false,
+              feedback: "Deus me livre! Dia perfeito é explorar um lugar novo de mãos dadas ✨"
+            },
+            {
+              text: "Explorar um lugar novo de mãos dadas ✨",
+              correct: true,
+              feedback: "Acertou em cheio! Não existe programa melhor do que descobrir o mundo ao seu lado 💖"
+            },
+            {
+              text: "Limpar o teto da casa",
+              correct: false,
+              feedback: "Hahaha nem pensar! Preferimos explorar um lugar novo de mãos dadas ✨"
+            }
+          ]
+        },
+        {
+          question: "Quem é a aniversariante mais incrível, linda e especial do mundo hoje?",
+          options: [
+            {
+              text: "A) Diana 💖",
+              correct: true,
+              feedback: "100% certa! Feliz aniversário, meu amor! 🎉🎂"
+            },
+            {
+              text: "B) A dona do meu coração 🥰",
+              correct: true,
+              feedback: "100% certa! Feliz aniversário, meu amor! 🎉🎂"
+            },
+            {
+              text: "C) Com certeza a Diana! 🎉",
+              correct: true,
+              feedback: "100% certa! Feliz aniversário, meu amor! 🎉🎂"
+            }
+          ]
+        },
+        {
+          question: "O quanto eu te amo?",
+          options: [
+            {
+              text: "Um pouquinho só",
+              correct: false,
+              feedback: "Nada de pouquinho! Eu te amo mais do que todas as viagens que ainda vamos fazer juntos ♾️❤️"
+            },
+            {
+              text: "Mais do que todas as viagens que ainda vamos fazer juntos ♾️❤️",
+              correct: true,
+              feedback: "Exatamente! E olha que ainda vamos viajar muito juntos nessa vida! ✈️♾️❤️"
+            },
+            {
+              text: "Só nos finais de semana",
+              correct: false,
+              feedback: "Todos os dias, a cada segundo — mais do que todas as viagens que ainda vamos fazer juntos ♾️❤️"
+            }
+          ]
+        }
+      ];
+
+      let currentQuizIdx = 0;
+      let quizScore = 0;
+      let quizAnswered = false;
+
+      const quizActiveView = document.getElementById("quiz-active-view");
+      const quizResultView = document.getElementById("quiz-result-view");
+      const quizStepText = document.getElementById("quiz-step-text");
+      const quizScoreText = document.getElementById("quiz-score-text");
+      const quizProgressFill = document.getElementById("quiz-progress-fill");
+      const quizQuestionText = document.getElementById("quiz-question-text");
+      const quizOptionsList = document.getElementById("quiz-options-list");
+      const quizFeedbackBox = document.getElementById("quiz-feedback-box");
+      const quizNextRow = document.getElementById("quiz-next-row");
+      const quizNextBtn = document.getElementById("quiz-next-btn");
+      const quizFinalScore = document.getElementById("quiz-final-score");
+      const quizFinalMsg = document.getElementById("quiz-final-msg");
+      const quizRestartBtn = document.getElementById("quiz-restart-btn");
+
+      function renderQuiz() {
+        const item = QUIZ_DATA[currentQuizIdx];
+        quizAnswered = false;
+
+        quizStepText.textContent = "Pergunta " + (currentQuizIdx + 1) + " de " + QUIZ_DATA.length;
+        quizScoreText.textContent = "Acertos: " + quizScore + " ⭐";
+        quizProgressFill.style.width = (((currentQuizIdx + 1) / QUIZ_DATA.length) * 100) + "%";
+        quizQuestionText.textContent = item.question;
+
+        quizFeedbackBox.className = "quiz-feedback";
+        quizFeedbackBox.textContent = "";
+        quizNextRow.classList.remove("show");
+        quizNextBtn.textContent = currentQuizIdx === QUIZ_DATA.length - 1 ? "Ver Resultado 🏆" : "Próxima Pergunta →";
+
+        quizOptionsList.innerHTML = "";
+        item.options.forEach(function (opt, idx) {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "quiz-option-btn";
+          btn.textContent = opt.text;
+          btn.addEventListener("click", function () {
+            handleQuizAnswer(idx);
+          });
+          quizOptionsList.appendChild(btn);
+        });
+      }
+
+      function handleQuizAnswer(selectedIdx) {
+        if (quizAnswered) return;
+        quizAnswered = true;
+
+        const item = QUIZ_DATA[currentQuizIdx];
+        const chosen = item.options[selectedIdx];
+        const buttons = quizOptionsList.querySelectorAll(".quiz-option-btn");
+
+        if (chosen.correct) {
+          quizScore++;
+          quizScoreText.textContent = "Acertos: " + quizScore + " ⭐";
+        }
+
+        buttons.forEach(function (btn, idx) {
+          btn.disabled = true;
+          const opt = item.options[idx];
+          if (idx === selectedIdx) {
+            btn.classList.add(opt.correct ? "is-correct" : "is-wrong");
+          } else if (opt.correct) {
+            btn.classList.add("is-correct");
+          } else {
+            btn.classList.add("is-muted");
+          }
+        });
+
+        quizFeedbackBox.textContent = chosen.feedback;
+        quizFeedbackBox.className = "quiz-feedback show " + (chosen.correct ? "correct" : "wrong");
+        quizNextRow.classList.add("show");
+      }
+
+      function nextQuizQuestion() {
+        if (currentQuizIdx < QUIZ_DATA.length - 1) {
+          currentQuizIdx++;
+          renderQuiz();
+        } else {
+          showQuizResult();
+        }
+      }
+
+      function showQuizResult() {
+        quizActiveView.style.display = "none";
+        quizResultView.classList.add("show");
+        quizFinalScore.textContent = String(quizScore);
+
+        if (quizScore === QUIZ_DATA.length) {
+          quizFinalMsg.textContent = "Pontuação perfeita, Diana! Você sabe tudo sobre a gente — agora corre lá embaixo para raspar a sua surpresa de aniversário! 💖🎁";
+        } else if (quizScore >= 5) {
+          quizFinalMsg.textContent = "Mandou super bem, meu amor! Quase gabaritou — agora vai lá embaixo descobrir a sua surpresa de aniversário! 🎉💖";
+        } else {
+          quizFinalMsg.textContent = "O importante é que a gente se ama demais (e que você pode jogar de novo quando quiser)! Agora corre para ver a surpresa! ❤️🎁";
+        }
+
+        launchConfetti(160);
+      }
+
+      function restartQuiz() {
+        currentQuizIdx = 0;
+        quizScore = 0;
+        quizResultView.classList.remove("show");
+        quizActiveView.style.display = "block";
+        renderQuiz();
+      }
+
+      quizNextBtn.addEventListener("click", nextQuizQuestion);
+      quizRestartBtn.addEventListener("click", restartQuiz);
+
+      /* =======================================================
+         5. BARALHO DE 8 MOTIVOS
+         ======================================================= */
+      const REASONS_DATA = [
+        {
+          icon: "✨",
+          title: "O seu sorriso",
+          desc: "Basta um sorriso seu para iluminar o meu dia inteiro e deixar tudo mais leve e bonito."
+        },
+        {
+          icon: "✈️",
+          title: "Nossa parceria nas viagens",
+          desc: "Cada viagem com você vira a minha memória favorita — você é a melhor companhia para explorar o mundo."
+        },
+        {
+          icon: "🇬🇧🗽",
+          title: "Sonhar com Londres e Nova York",
+          desc: "Amo fazer planos com você e imaginar o dia em que vamos realizar nosso sonho de morar em Londres ou NY."
+        },
+        {
+          icon: "🐶🐱",
+          title: "Seu amor por cachorros e gatos",
+          desc: "Adoro ver o seu carinho com os bichinhos e sonhar com a nossa futura casa cheia de patinhas e amor."
+        },
+        {
+          icon: "💖",
+          title: "O seu jeito carinhoso",
+          desc: "O seu abraço, o seu cuidado e o seu jeito único de demonstrar amor me fazem sentir a pessoa mais sortuda."
+        },
+        {
+          icon: "😂",
+          title: "Nossas risadas juntos",
+          desc: "Não existe nada melhor do que rir com você até perder o fôlego por qualquer motivo."
+        },
+        {
+          icon: "🤍",
+          title: "Seu apoio nos dias difíceis",
+          desc: "Obrigado por estar sempre ao meu lado, me ouvir, me incentivar e ser o meu porto seguro."
+        },
+        {
+          icon: "👑",
+          title: "Simplesmente por você ser quem é",
+          desc: "Eu amo cada detalhe seu, a sua essência, a sua luz e a mulher maravilhosa que você é todos os dias."
+        }
+      ];
+
+      let currentReasonIdx = 0;
+      const reasonCard = document.getElementById("reason-card");
+      const reasonCounterText = document.getElementById("reason-counter-text");
+      const reasonProgressFill = document.getElementById("reason-progress-fill");
+      const reasonNumBg = document.getElementById("reason-num-bg");
+      const reasonIcon = document.getElementById("reason-icon");
+      const reasonTitle = document.getElementById("reason-title");
+      const reasonDesc = document.getElementById("reason-desc");
+      const reasonPrevBtn = document.getElementById("reason-prev-btn");
+      const reasonNextBtn = document.getElementById("reason-next-btn");
+
+      function updateReasonCard(animate) {
+        const applyContent = function () {
+          const r = REASONS_DATA[currentReasonIdx];
+          reasonCounterText.textContent = (currentReasonIdx + 1) + " / " + REASONS_DATA.length;
+          reasonProgressFill.style.width = (((currentReasonIdx + 1) / REASONS_DATA.length) * 100) + "%";
+          reasonNumBg.textContent = String(currentReasonIdx + 1).padStart(2, "0");
+          reasonIcon.textContent = r.icon;
+          reasonTitle.textContent = r.title;
+          reasonDesc.textContent = r.desc;
+        };
+
+        if (!animate) {
+          applyContent();
+          return;
+        }
+
+        reasonCard.classList.add("is-switching");
+        setTimeout(function () {
+          applyContent();
+          reasonCard.classList.remove("is-switching");
+        }, 160);
+      }
+
+      function nextReason() {
+        currentReasonIdx = (currentReasonIdx + 1) % REASONS_DATA.length;
+        updateReasonCard(true);
+      }
+
+      function prevReason() {
+        currentReasonIdx = (currentReasonIdx - 1 + REASONS_DATA.length) % REASONS_DATA.length;
+        updateReasonCard(true);
+      }
+
+      reasonCard.addEventListener("click", nextReason);
+      reasonCard.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          nextReason();
+        }
+      });
+      reasonNextBtn.addEventListener("click", nextReason);
+      reasonPrevBtn.addEventListener("click", prevReason);
+
+      /* =======================================================
+         6. RASPADINHA DOURADA (MOUSE + TOUCH)
+         ======================================================= */
+      const scratchCanvas = document.getElementById("scratch-canvas");
+      const scratchCtx = scratchCanvas.getContext("2d");
+      const revealSurpriseBtn = document.getElementById("reveal-surprise-btn");
+      const resetSurpriseBtn = document.getElementById("reset-surprise-btn");
+      let isDrawing = false;
+      let surpriseRevealed = false;
+      let scratchSteps = 0;
+
+      function initScratchCard() {
+        const box = document.getElementById("scratch-box");
+        const rect = box.getBoundingClientRect();
+        const width = Math.max(rect.width, 280);
+        const height = Math.max(rect.height, 260);
+        const dpr = window.devicePixelRatio || 1;
+
+        scratchCanvas.width = width * dpr;
+        scratchCanvas.height = height * dpr;
+        scratchCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        surpriseRevealed = false;
+        scratchSteps = 0;
+        scratchCanvas.style.opacity = "1";
+        scratchCanvas.style.pointerEvents = "auto";
+        revealSurpriseBtn.style.display = "inline-flex";
+        resetSurpriseBtn.style.display = "none";
+
+        const grad = scratchCtx.createLinearGradient(0, 0, width, height);
+        grad.addColorStop(0, "#c89643");
+        grad.addColorStop(0.35, "#e6c37a");
+        grad.addColorStop(0.55, "#f5e0ad");
+        grad.addColorStop(0.75, "#d8a856");
+        grad.addColorStop(1, "#b88336");
+
+        scratchCtx.globalCompositeOperation = "source-over";
+        scratchCtx.fillStyle = grad;
+        scratchCtx.fillRect(0, 0, width, height);
+
+        scratchCtx.fillStyle = "rgba(255, 255, 255, 0.22)";
+        for (let x = 18; x < width; x += 30) {
+          for (let y = 18; y < height; y += 30) {
+            scratchCtx.beginPath();
+            scratchCtx.arc(x, y, 2, 0, Math.PI * 2);
+            scratchCtx.fill();
+          }
+        }
+
+        scratchCtx.fillStyle = "#ffffff";
+        scratchCtx.textAlign = "center";
+        scratchCtx.textBaseline = "middle";
+        scratchCtx.font = '700 20px "Playfair Display", Georgia, serif';
+        scratchCtx.fillText("Raspe aqui para revelar ✨", width / 2, height / 2 - 12);
+
+        scratchCtx.font = '600 13px "Poppins", system-ui, sans-serif';
+        scratchCtx.fillStyle = "rgba(255, 255, 255, 0.94)";
+        scratchCtx.fillText("🎁 Sua surpresa especial de aniversário", width / 2, height / 2 + 18);
+      }
+
+      function getPointerPos(e) {
+        const rect = scratchCanvas.getBoundingClientRect();
+        const clientX = e.touches && e.touches.length ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches && e.touches.length ? e.touches[0].clientY : e.clientY;
+        return {
+          x: clientX - rect.left,
+          y: clientY - rect.top
+        };
+      }
+
+      function scratchPoint(x, y) {
+        if (surpriseRevealed) return;
+        scratchCtx.globalCompositeOperation = "destination-out";
+        scratchCtx.beginPath();
+        scratchCtx.arc(x, y, 26, 0, Math.PI * 2);
+        scratchCtx.fill();
+
+        scratchSteps++;
+        if (scratchSteps % 8 === 0) {
+          checkScratchPercent();
+        }
+      }
+
+      function checkScratchPercent() {
+        try {
+          const data = scratchCtx.getImageData(0, 0, scratchCanvas.width, scratchCanvas.height).data;
+          let cleared = 0;
+          let totalSampled = 0;
+          const stride = 32;
+
+          for (let i = 3; i < data.length; i += 4 * stride) {
+            totalSampled++;
+            if (data[i] < 128) cleared++;
+          }
+
+          if (totalSampled > 0 && cleared / totalSampled > 0.45) {
+            revealSurprise();
+          }
+        } catch (err) {
+          console.error("Erro ao verificar raspadinha:", err);
+        }
+      }
+
+      function revealSurprise() {
+        if (surpriseRevealed) return;
+        surpriseRevealed = true;
+        scratchCanvas.style.opacity = "0";
+        scratchCanvas.style.pointerEvents = "none";
+        revealSurpriseBtn.style.display = "none";
+        resetSurpriseBtn.style.display = "inline-flex";
+        launchConfetti(190);
+      }
+
+      scratchCanvas.addEventListener("mousedown", function (e) {
+        isDrawing = true;
+        const pos = getPointerPos(e);
+        scratchPoint(pos.x, pos.y);
+      });
+
+      window.addEventListener("mouseup", function () {
+        isDrawing = false;
+      });
+
+      scratchCanvas.addEventListener("mousemove", function (e) {
+        if (!isDrawing) return;
+        const pos = getPointerPos(e);
+        scratchPoint(pos.x, pos.y);
+      });
+
+      scratchCanvas.addEventListener("touchstart", function (e) {
+        e.preventDefault();
+        isDrawing = true;
+        const pos = getPointerPos(e);
+        scratchPoint(pos.x, pos.y);
+      }, { passive: false });
+
+      scratchCanvas.addEventListener("touchmove", function (e) {
+        e.preventDefault();
+        if (!isDrawing) return;
+        const pos = getPointerPos(e);
+        scratchPoint(pos.x, pos.y);
+      }, { passive: false });
+
+      scratchCanvas.addEventListener("touchend", function () {
+        isDrawing = false;
+      });
+
+      revealSurpriseBtn.addEventListener("click", revealSurprise);
+      resetSurpriseBtn.addEventListener("click", initScratchCard);
+
+      /* =======================================================
+         7. CONTAGEM REGRESSIVA AO VIVO (09/01/2027)
+         ======================================================= */
+      const cdDays = document.getElementById("cd-days");
+      const cdHours = document.getElementById("cd-hours");
+      const cdMinutes = document.getElementById("cd-minutes");
+      const cdSeconds = document.getElementById("cd-seconds");
+
+      function updateCountdown() {
+        const target = new Date(2027, 0, 9, 0, 0, 0).getTime();
+        const now = Date.now();
+        const diff = Math.max(0, target - now);
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+
+        cdDays.textContent = String(days).padStart(2, "0");
+        cdHours.textContent = String(hours).padStart(2, "0");
+        cdMinutes.textContent = String(minutes).padStart(2, "0");
+        cdSeconds.textContent = String(seconds).padStart(2, "0");
+      }
+
+      /* =======================================================
+         8. BOTÕES DE CONFETES E INICIALIZAÇÃO
+         ======================================================= */
+      document.getElementById("hero-confetti-btn").addEventListener("click", function () {
+        launchConfetti(140);
+      });
+
+      document.getElementById("footer-confetti-btn").addEventListener("click", function () {
+        launchConfetti(140);
+      });
+
+      function initApp() {
+        resizeConfettiCanvas();
+        initFloatingDecor();
+        setLetterState(false); // Garante envelope fechado ao carregar
+        renderQuiz();
+        updateReasonCard(false);
+        initScratchCard();
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        setTimeout(function () {
+          launchConfetti(70);
+        }, 400);
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initApp);
+      } else {
+        initApp();
+      }
+
+      window.addEventListener("resize", function () {
+        resizeConfettiCanvas();
+        if (!surpriseRevealed) {
+          initScratchCard();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
